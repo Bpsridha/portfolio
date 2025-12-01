@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Balaji Sridhar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Montserrat Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  body {
+    height: 300vh;
+    background: black;
+    overflow-x: hidden;
+  }
+
+  /* MENU */
+  .menu-text {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    color: white;
+    z-index: 200;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  /* UNIFIED SITE NAME (big → small) */
+  .site-name {
+    position: fixed;
+    top: 50%;                 /* Start centered */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    transform-origin: center center;
+    font-size: 9vw;          /* HUGE intro */
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    z-index: 300;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  /* ABOUT */
+  .about-bottom-right {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    width: 300px;
+    color: white;
+    opacity: 0;
+    transform: translateY(30px);
+    z-index: 120;
+    text-align: right;
+    pointer-events: none;
+  }
+
+  /* CANVAS */
+  #canvas1 {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background: black;
+    filter: blur(6px);
+  }
+</style>
+</head>
+
+<body>
+
+<div class="menu-text">MENU</div>
+
+<div class="site-name">Balaji Sridhar</div>
+
+<canvas id="canvas1"></canvas>
+
+<div class="about-bottom-right">
+  <h2>About Me</h2>
+  <p>
+    I’m Balaji — a computational mechanics PhD student at CMU.
+I work where applied math, physics, and computation meet.
+I’m drawn to problems that force me to think deeper,
+build better, and push beyond what I already know.<br>
+  </p>
+</div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ====== FRAME SEQUENCE ====== */
+
+const frameCount = 135;
+const canvas = document.getElementById("canvas1");
+const context = canvas.getContext("2d");
+
+function frameFile(i) {
+  return `assets/scene1/ezgif-frame-${String(i).padStart(3,'0')}.jpg`;
+}
+
+const images = [];
+for (let i = 1; i <= frameCount; i++) {
+  const img = new Image();
+  img.src = frameFile(i);
+  images.push(img);
+}
+
+function resizeCanvas() {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+  context.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+function renderFrame(i) {
+  const img = images[i];
+  if (!img) return;
+
+  const cw = canvas.width / (window.devicePixelRatio || 1);
+  const ch = canvas.height / (window.devicePixelRatio || 1);
+  const imgAspect = img.width / img.height;
+  const canvasAspect = cw / ch;
+
+  let drawWidth, drawHeight;
+  if (imgAspect > canvasAspect) {
+    drawHeight = ch;
+    drawWidth = drawHeight * imgAspect;
+  } else {
+    drawWidth = cw;
+    drawHeight = drawWidth / imgAspect;
+  }
+
+  const dx = (cw - drawWidth) / 2;
+  const dy = (ch - drawHeight) / 2;
+
+  context.clearRect(0,0,cw,ch);
+  context.drawImage(img, dx, dy, drawWidth, drawHeight);
+}
+
+images[0].onload = () => renderFrame(0);
+
+const frame = { value: 0 };
+gsap.to(frame, {
+  value: frameCount - 1,
+  ease: "none",
+  scrollTrigger: {
+    trigger: document.body,
+    start: "top top",
+    end: "bottom bottom",
+    scrub: 1
+  },
+  onUpdate: () => renderFrame(Math.floor(frame.value))
+});
+
+/* REMOVE BLUR */
+gsap.to("#canvas1", {
+  filter: "blur(0px)",
+  scrollTrigger: {
+    trigger: document.body,
+    start: "top top",
+    end: "25% top",
+    scrub: true
+  }
+});
+
+/* ABOUT FADE */
+gsap.to(".about-bottom-right", {
+  opacity: 1,
+  y: 0,
+  scrollTrigger: {
+    trigger: document.body,
+    start: "10% top",
+    end: "20% top",
+    scrub: true
+  }
+});
+
+/* ====== BIG NAME → TOP CENTER (PERFECT) ====== */
+
+gsap.to(".site-name", {
+  y: -300,                  // moves upward
+  scale: 0.2,               // shrinks smoothly
+  ease: "none",
+  scrollTrigger: {
+    trigger: document.body,
+    start: "top top",
+    end: "15% top",
+    scrub: true
+  }
+});
+</script>
+
+</body>
+</html>
