@@ -25,10 +25,38 @@
     font-family: 'Montserrat', sans-serif;
   }
 
+:root {
+  --bg: #000000;
+  --text: #ffffff;
+  --muted: #b3b3b3;
+  --accent: #94a3b8;
+  --panel: rgba(10, 10, 10, 0.85);
+  --border: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #555555;
+  --accent: #1a73e8;
+  --panel: rgba(255, 255, 255, 0.9);
+  --border: rgba(0, 0, 0, 0.15);
+}
+
+body.home-page {
+  --bg: #000000;
+  --text: #ffffff;
+  --muted: #b3b3b3;
+  --accent: #94a3b8;
+  --panel: rgba(10, 10, 10, 0.85);
+  --border: rgba(255, 255, 255, 0.2);
+}
+
   body {
     height: 300vh;
-    background: black;
+    background: var(--bg);
     overflow-x: hidden;
+    color: var(--text);
   }
 
   /* MENU */
@@ -37,10 +65,57 @@
     top: 20px;
     left: 20px;
     font-size: 20px;
-    color: white;
-    z-index: 200;
+    color: var(--text);
+    z-index: 220;
     cursor: pointer;
+    font-weight: 600;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: var(--text);
+    z-index: 220;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .menu-panel {
+    position: fixed;
+    top: 60px;
+    left: 20px;
+    padding: 14px 16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    z-index: 220;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-6px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .menu-panel.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .menu-panel a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    margin-bottom: 10px;
     font-weight: 500;
+  }
+
+  .menu-panel a:last-child {
+    margin-bottom: 0;
   }
 
   /* UNIFIED SITE NAME (big → small) */
@@ -52,7 +127,7 @@
     transform-origin: center center;
     font-size: 9vw;          /* HUGE intro */
     font-weight: 700;
-    color: white;
+    color: var(--text);
     text-transform: uppercase;
     letter-spacing: 0.12em;
     z-index: 300;
@@ -60,18 +135,118 @@
     pointer-events: none;
   }
 
-  /* ABOUT */
-  .about-bottom-right {
-    position: fixed;
+  /* OVERLAY SECTIONS */
+  .overlay-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 120;
+    pointer-events: none;
+  }
+
+  .overlay-section {
+    position: absolute;
     bottom: 40px;
     right: 40px;
-    width: 300px;
-    color: white;
+    width: 360px;
+    color: var(--text);
     opacity: 0;
     transform: translateY(30px);
-    z-index: 120;
     text-align: right;
     pointer-events: none;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(2px);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .overlay-section h2 {
+    margin-bottom: 8px;
+  }
+  .overlay-section p {
+    line-height: 1.6;
+  }
+  .overlay-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .overlay-section ul li {
+    margin-bottom: 8px;
+  }
+  .overlay-section .interests {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+
+  .projects-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+
+  .project-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: left;
+  }
+
+  .project-card a {
+    color: var(--text);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .project-card p {
+    margin: 4px 0 0 0;
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+
+  .overlay-section.centered {
+    left: 50%;
+    top: 50%;
+    right: auto;
+    bottom: auto;
+    transform: translate(-50%, -50%) translateY(30px);
+    text-align: center;
+    width: min(720px, 90vw);
+  }
+
+  .projects-cards {
+    text-align: left;
+  }
+
+  .legibility-overlay {
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
+    z-index: 80;
+    pointer-events: none;
+  }
+
+  .contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 6px;
+  }
+
+  .contact-icons a {
+    color: var(--text);
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-icons a:hover,
+  .contact-icons a:focus {
+    opacity: 1;
+    outline: none;
   }
 
   /* CANVAS */
@@ -84,26 +259,133 @@
     background: black;
     filter: blur(6px);
   }
+
+  /* Scroll cue */
+  .scroll-cue {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text);
+    z-index: 210;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  .scroll-cue .arrow {
+    width: 10px;
+    height: 16px;
+    border-left: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
+    transform: rotate(-45deg);
+    animation: float 1.4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: rotate(-45deg) translateY(0); }
+    50% { transform: rotate(-45deg) translateY(6px); }
+  }
+
+  .breadcrumb {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 12px;
+    color: var(--text);
+    opacity: 0.65;
+    z-index: 210;
+    text-decoration: none;
+  }
+
 </style>
 </head>
 
-<body>
+<body class="home-page">
 
-<div class="menu-text">MENU</div>
+<div class="menu-text" role="button" aria-expanded="false" aria-controls="menuPanel">MENU</div>
+<div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
+<nav id="menuPanel" class="menu-panel" aria-label="Site menu">
+  <a href="resume.html">Resume</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</nav>
 
 <div class="site-name">Balaji Sridhar</div>
 
 <canvas id="canvas1"></canvas>
+<div class="legibility-overlay"></div>
 
-<div class="about-bottom-right">
-  <h2>About Me</h2>
-  <p>
-    I’m Balaji — a computational mechanics PhD student at CMU.
-I work where applied math, physics, and computation meet.
-I’m drawn to problems that force me to think deeper,
-build better, and push beyond what I already know.<br>
-  </p>
+<div class="scroll-cue" aria-hidden="true">
+  <span>Scroll</span>
+  <div class="arrow"></div>
 </div>
+
+<div class="overlay-container" id="overlayContainer">
+  <div class="overlay-section" id="about">
+    <h2>About Me</h2>
+    <p>
+      I’m Balaji — a computational mechanics PhD student at CMU.
+      My work focuses on numerical modeling, continuum mechanics,<br>
+      and the design of simulation frameworks.
+    </p>
+    <p>
+      I’m interested in problems where mathematical structure,
+      physical intuition, and computational decisions interact —<br>
+      especially when small modeling choices have large consequences.
+    </p>
+    <p class="interests">
+      Current interests include time integration schemes,
+  verification strategies, and modular solver design.
+    </p>
+  </div>
+
+  <div class="overlay-section centered" id="projects">
+    <h2>Projects</h2>
+    <div class="projects-cards">
+      <div class="project-card">
+        <a href="projects/phase-field-thermomechanics-fracture.html">Phase-field Thermomechanics of Dynamic Fracture</a>
+        <p>Coupled heat transfer and fracture via phase-field models.</p>
+      </div>
+      <div class="project-card">
+        <a href="projects/cornering-aerodynamics-fsae.html">Cornering Aerodynamics Analysis of a Formula SAE Race Car</a>
+        <p>Comparative CFD of straight-line vs cornering flow to assess downforce/drag trends.</p>
+      </div>
+      <div class="project-card">
+        <a href="projects/seismic-hazard-analysis-chennai.html">Seismic Hazard Analysis: Chennai</a>
+        <p>SVR on building/soil data to flag structural risk.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay-section centered" id="contact">
+    <h2>Contact</h2>
+    <div class="contact-icons">
+      <a href="mailto:balajips@cmu.edu" aria-label="Email Balaji">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+          <polyline points="3 7 12 13 21 7"></polyline>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/in/balaji-pulipakkam-sridhar/" aria-label="LinkedIn profile">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.5 9.5v9"></path>
+          <path d="M6.5 5.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"></path>
+          <path d="M11.5 18.5v-6a3 3 0 0 1 6 0v6"></path>
+          <path d="M11.5 13.5h6"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<a class="breadcrumb" href="projects.html">Selected work → Projects</a>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -210,8 +492,64 @@ gsap.to(".site-name", {
     scrub: true
   }
 });
+
+/* MENU TOGGLE */
+const menuButton = document.querySelector(".menu-text");
+const menuPanel = document.getElementById("menuPanel");
+menuButton.addEventListener("click", () => {
+  const isOpen = menuPanel.classList.toggle("open");
+  menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
+});
+
+/* Theme toggle */
+const rootEl = document.documentElement;
+const themeToggle = document.querySelector(".theme-toggle");
+const savedTheme = localStorage.getItem("theme");
+const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+rootEl.setAttribute("data-theme", initialTheme);
+
+function toggleTheme() {
+  const next = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  rootEl.setAttribute("data-theme", next);
+  localStorage.setItem("theme", next);
+}
+
+themeToggle.addEventListener("click", toggleTheme);
+
+/* Hide scroll cue after initial scroll */
+gsap.to(".scroll-cue", {
+  opacity: 0,
+  scrollTrigger: {
+    trigger: document.body,
+    start: "8% top",
+    end: "18% top",
+    scrub: true
+  }
+});
+
+/* SECTION SEQUENCE */
+const overlayContainer = document.getElementById("overlayContainer");
+const overlays = [document.getElementById("about"), document.getElementById("projects"), document.getElementById("contact")];
+
+gsap.set(overlays, { opacity: 0, y: 30, pointerEvents: "none" });
+
+const sequence = gsap.timeline({
+  scrollTrigger: {
+    trigger: overlayContainer,
+    start: "top top",
+    end: "+=200%",
+    scrub: true,
+    pin: true
+  }
+});
+
+sequence
+  .to(overlays[0], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 })
+  .to(overlays[0], { opacity: 0, y: -20, pointerEvents: "none", duration: 0.5 })
+  .to(overlays[1], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 })
+  .to(overlays[1], { opacity: 0, y: -20, pointerEvents: "none", duration: 0.5 })
+  .to(overlays[2], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 });
 </script>
 
 </body>
 </html>
-
