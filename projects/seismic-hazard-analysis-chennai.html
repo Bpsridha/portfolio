@@ -43,35 +43,8 @@
                 var(--bg);
     color: var(--text);
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 40px 20px;
-  }
-  .card {
-    width: min(900px, 100%);
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 32px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-  }
-  .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-  .nav a { color: var(--text); text-decoration: none; font-weight: 600; }
-  h1 { font-size: 28px; margin-bottom: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
-  h2 { font-size: 18px; margin: 18px 0 6px; letter-spacing: 0.04em; }
-  p { line-height: 1.6; margin-bottom: 10px; }
-  ul { margin-left: 18px; line-height: 1.6; }
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 12px;
-    color: var(--text);
-    z-index: 50;
-    cursor: pointer;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.8;
+    padding: 40px 20px 60px;
   }
 
   .home-link {
@@ -87,29 +60,149 @@
     text-transform: uppercase;
     opacity: 0.9;
   }
+
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: var(--text);
+    z-index: 50;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  main {
+    width: min(900px, 100%);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+    line-height: 1.6;
+  }
+
+  h1 { font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+  h2 { font-size: 18px; letter-spacing: 0.04em; margin: 20px 0 8px; }
+  p { margin-bottom: 10px; }
+  ul { margin-left: 18px; margin-bottom: 12px; }
+  ul li { margin-bottom: 6px; }
+  section { margin-bottom: 18px; }
+
+  a { color: var(--accent); }
+
+  .top-nav {
+    margin-bottom: 10px;
+  }
+
+  .top-nav a {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .meta {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 10px 0 14px;
+    background: rgba(0,0,0,0.12);
+  }
+  .meta p { margin: 4px 0; color: var(--muted); }
+
+  .toc {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 14px 0 18px;
+    background: rgba(0,0,0,0.08);
+  }
+  .toc h2 { margin: 0 0 8px; }
+  .toc ol { margin-left: 18px; }
+
+  .pill {
+    display: inline-block;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.9;
+    margin-bottom: 8px;
+  }
 </style>
 </head>
 <body>
-  <a class="home-link" href="/index.html">Balaji Pulipakkam Sridhar</a>
+  <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <div class="card">
-    <div class="nav">
-      <div style="display: flex; gap: 12px;">
-        <a href="/projects.html">Projects</a>
-        <a href="/contact.html">Contact</a>
+  <main>
+    <nav class="top-nav" aria-label="Page links">
+      <a href="/projects.html">← Back to Projects</a>
+    </nav>
+    <header>
+      <h1>Seismic Hazard Analysis: Chennai</h1>
+      <div class="meta">
+        <p><strong>Institution / Team:</strong> College of Engineering Guindy, Anna University</p>
+        <p><strong>Project type:</strong> Research project</p>
+        <p><strong>Year:</strong> 20202021</p>
+        <p><strong>Role:</strong> Researcher</p>
       </div>
-    </div>
-    <h1>Seismic Hazard Analysis: A Case Study on Chennai</h1>
-    <p><strong>Institution:</strong> College of Engineering Guindy (CEG), Anna University</p>
-    <p><strong>Dates:</strong> Oct 2020 – Mar 2021</p>
-    <p><strong>DOI:</strong> 10.1007/978-981-16-8667-2_35</p>
+      <span class="pill">Coming soon</span>
+    </header>
 
-    <h2>Overview</h2>
-    <ul>
-      <li>Evaluated the vulnerability of buildings and identified areas in Chennai which are prone to structural damage by implementing Support Vector Regression on the compiled building and soil parametric data which achieved an accuracy of 71 percent.</li>
-      <li>Best Paper presentation award at 5th International Conference on Architecture and Civil Engineering–Singapore, August 2021</li>
-    </ul>
-  </div>
+    <nav class="toc" aria-label="Contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#context">Context</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#implementation-tools">Implementation &amp; Tools</a></li>
+        <li><a href="#key-results">Key Results</a></li>
+        <li><a href="#analysis-insights">Analysis &amp; Insights</a></li>
+        <li><a href="#what-this-demonstrates">What This Demonstrates</a></li>
+        <li><a href="#artifacts-links">Artifacts &amp; Links</a></li>
+      </ol>
+    </nav>
+
+    <section id="context">
+      <h2>Context</h2>
+      <p>Content coming soon.</p>
+    </section>
+
+    <section id="approach">
+      <h2>Approach</h2>
+      <p>Content coming soon.</p>
+    </section>
+
+    <section id="implementation-tools">
+      <h2>Implementation &amp; Tools</h2>
+      <p>Details will be added soon.</p>
+    </section>
+
+    <section id="key-results">
+      <h2>Key Results</h2>
+      <p>Results will be added with the full write-up.</p>
+    </section>
+
+    <section id="analysis-insights">
+      <h2>Analysis &amp; Insights</h2>
+      <p>Analysis will be included when results are published.</p>
+    </section>
+
+    <section id="what-this-demonstrates">
+      <h2>What This Demonstrates</h2>
+      <p>Competencies summary coming soon.</p>
+    </section>
+
+    <section id="artifacts-links">
+      <h2>Artifacts &amp; Links</h2>
+      <p>Artifacts will be linked after publication.</p>
+    </section>
+  </main>
+
 <script>
   const rootEl = document.documentElement;
   const toggle = document.querySelector(".theme-toggle");

@@ -79,10 +79,6 @@
     line-height: 1.7;
   }
 
-  header {
-    margin-bottom: 18px;
-  }
-
   h1 {
     font-size: 28px;
     letter-spacing: 0.08em;
@@ -101,70 +97,95 @@
   ul li { margin-bottom: 6px; }
   .muted { color: var(--muted); }
 
-  section {
-    margin-bottom: 18px;
-  }
+  section { margin-bottom: 18px; }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 10px 0 14px;
-  }
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  thead th { background: rgba(255,255,255,0.06); }
 
-  th, td {
-    border: 1px solid var(--border);
-    padding: 8px;
-    text-align: left;
-  }
-
-  thead th {
-    background: rgba(255,255,255,0.06);
-  }
-
-  figure {
-    border: 1px dashed var(--border);
-    padding: 10px;
-    margin: 10px 0 14px;
-    text-align: center;
-  }
-
-  figcaption {
-    margin-top: 6px;
-    color: var(--muted);
-    font-size: 14px;
-  }
+  figure { border: 1px dashed var(--border); padding: 10px; margin: 10px 0 14px; text-align: center; }
+  figcaption { margin-top: 6px; color: var(--muted); font-size: 14px; }
 
   a { color: var(--accent); }
+
+  .top-nav {
+    margin-bottom: 10px;
+  }
+
+  .top-nav a {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .meta {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 10px 0 14px;
+    background: rgba(0,0,0,0.12);
+  }
+  .meta p { margin: 4px 0; color: var(--muted); }
+
+  .toc {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 14px 0 18px;
+    background: rgba(0,0,0,0.08);
+  }
+  .toc h2 { margin: 0 0 8px; }
+  .toc ol { margin-left: 18px; }
 </style>
 </head>
 <body>
-  <a class="home-link" href="/index.html">Balaji Pulipakkam Sridhar</a>
+  <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
   <main>
     <header>
+      <nav class="top-nav" aria-label="Page links">
+        <a href="/projects.html">← Back to Projects</a>
+      </nav>
       <h1>Cornering Aerodynamics Analysis of a Formula SAE Race Car</h1>
       <p class="muted">Aerodynamic performance under straight-line and cornering flow conditions</p>
-      <p>Carnegie Mellon Racing · Formula SAE<br>Team research project · 2023<br>Conducted as part of the CMR aerodynamics effort</p>
+      <div class="meta">
+        <p><strong>Institution / Team:</strong> Carnegie Mellon Racing (Formula SAE)</p>
+        <p><strong>Project type:</strong> Team research project</p>
+        <p><strong>Year:</strong> 2023</p>
+        <p><strong>Role:</strong> Aerodynamics contributor</p>
+      </div>
     </header>
 
-    <section>
+    <nav class="toc" aria-label="Contents">
+      <h2>Contents</h2>
+      <ol>
+        <li><a href="#context">Context</a></li>
+        <li><a href="#approach">Approach</a></li>
+        <li><a href="#implementation-tools">Implementation &amp; Tools</a></li>
+        <li><a href="#key-results">Key Results</a></li>
+        <li><a href="#analysis-insights">Analysis &amp; Insights</a></li>
+        <li><a href="#what-this-demonstrates">What This Demonstrates</a></li>
+        <li><a href="#artifacts-links">Artifacts &amp; Links</a></li>
+      </ol>
+    </nav>
+
+    <section id="context">
       <h2>Context</h2>
-      <p>Formula SAE race cars operate predominantly in cornering conditions, where vehicle performance depends strongly on aerodynamic downforce and drag. Despite this, aerodynamic analysis is often performed assuming straight-line flow, largely due to the simplicity of uniform inlet conditions and rectangular CFD domains.</p>
-      <p>This project was motivated by the question of how representative straight-line aerodynamic simulations are of real cornering performance. In particular, the goal was to quantify how aerodynamic forces change when the car experiences a velocity gradient across its width, as occurs during steady-state cornering. Understanding this sensitivity is important for interpreting CFD results correctly and for making informed aerodynamic design decisions.</p>
+      <p>Formula SAE race cars operate predominantly in cornering conditions, where vehicle performance depends strongly on aerodynamic downforce and drag. Aerodynamic analysis is often performed assuming straight-line flow due to the simplicity of uniform inlet conditions and rectangular CFD domains.</p>
+      <p>This work quantifies how aerodynamic forces change when the car experiences a velocity gradient across its width, as occurs during steady-state cornering. The comparison helps interpret straight-line CFD results against cornering performance needs.</p>
     </section>
 
-    <section>
+    <section id="approach">
       <h2>Approach</h2>
-      <p>The problem was framed as a comparative CFD study between straight-line flow and cornering flow conditions. Rather than attempting to directly compare absolute force values—which are affected by differences in local flow velocity—the analysis focused on relative aerodynamic performance metrics, particularly the downforce-to-drag ratio.</p>
-      <p>Two simulation domains were constructed:</p>
+      <p>Designed a comparative CFD study between straight-line flow and cornering flow conditions. The analysis centers on relative aerodynamic performance metrics, particularly the downforce-to-drag ratio.</p>
       <ul>
-        <li>A straight-line domain with uniform inlet velocity and symmetry conditions, serving as the baseline.</li>
-        <li>A cornering domain that introduces a lateral velocity gradient, simulating the curved flow field experienced during steady-state turning.</li>
+        <li>Straight-line domain with uniform inlet velocity and symmetry conditions (baseline).</li>
+        <li>Cornering domain with lateral velocity gradient to represent steady-state turning.</li>
       </ul>
-      <p>By running both domains across a range of velocities and comparing trends rather than isolated values, the study isolates the aerodynamic impact of cornering flow while maintaining numerical consistency.</p>
+      <p>Both domains run across multiple velocities to isolate aerodynamic impact from flow curvature while keeping solver settings consistent.</p>
     </section>
 
-    <section>
+    <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
       <p><strong>Geometry and Domain Setup</strong></p>
       <ul>
@@ -180,7 +201,7 @@
       <ul>
         <li>Solver: ANSYS Fluent (pressure-based coupled solver)</li>
         <li>Flow model: Incompressible RANS</li>
-        <li>Turbulence model: k–ω SST</li>
+        <li>Turbulence model: k-omega SST</li>
         <li>Discretization: Second-order spatial schemes</li>
         <li>Boundary conditions: moving ground, rotating wheels, velocity inlet with imposed lateral gradient (cornering case)</li>
       </ul>
@@ -189,7 +210,7 @@
       <ul>
         <li>Watertight geometry meshing workflow</li>
         <li>Poly-hexcore volume mesh</li>
-        <li>Boundary layer resolution with first cell height ≈ 0.5 mm and y⁺ ≈ 30</li>
+        <li>Boundary layer resolution with first cell height approx 0.5 mm and y+ approx 30</li>
         <li>Mesh sizes ranging from 8 million to 21 million cells</li>
         <li>Simulations run on the Bridges-2 HPC cluster</li>
       </ul>
@@ -208,7 +229,7 @@
       </figure>
     </section>
 
-    <section>
+    <section id="key-results">
       <h2>Key Results</h2>
       <h3>Straight-Line Aerodynamic Performance (20 m/s)</h3>
       <table>
@@ -284,14 +305,14 @@
       </table>
     </section>
 
-    <section>
+    <section id="analysis-insights">
       <h2>Analysis &amp; Insights</h2>
-      <p>The results indicate that while cornering flow does degrade aerodynamic performance, the magnitude of the effect is modest. Downforce continues to scale predictably with velocity, and the aerodynamic package remains highly effective relative to the no-aero configuration.</p>
-      <p>Drag appears more sensitive to flow curvature than downforce, contributing to the observed reduction in the downforce-to-drag ratio. Importantly, the consistency of the reduction across speeds suggests that straight-line simulations remain useful for comparative design, provided their limitations are understood.</p>
-      <p>An additional outcome of this work is the development of a reusable cornering-flow CFD workflow that can be applied to future aerodynamic iterations.</p>
+      <p>Cornering flow reduces aerodynamic performance relative to straight-line cases, but the magnitude is modest. Downforce scales predictably with velocity, and the aerodynamic package remains effective relative to the no-aero configuration.</p>
+      <p>Drag shows higher sensitivity to flow curvature than downforce, contributing to the downforce-to-drag reduction. The consistent reduction across speeds indicates straight-line simulations remain useful for comparative design when their limits are acknowledged.</p>
+      <p>The cornering-flow CFD workflow is reusable for future aerodynamic iterations.</p>
     </section>
 
-    <section>
+    <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
       <ul>
         <li>Setup and execution of large-scale external aerodynamics CFD</li>
@@ -303,7 +324,7 @@
       </ul>
     </section>
 
-    <section>
+    <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
       <ul>
         <li>Full technical report (PDF)</li>

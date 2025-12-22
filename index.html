@@ -53,7 +53,7 @@ body.home-page {
 }
 
   body {
-    height: 300vh;
+    height: 360vh;
     background: var(--bg);
     overflow-x: hidden;
     color: var(--text);
@@ -141,7 +141,7 @@ body.home-page {
     width: 100%;
     height: 100vh;
     z-index: 120;
-    pointer-events: none;
+    pointer-events: auto;
   }
 
   .overlay-section {
@@ -182,15 +182,18 @@ body.home-page {
 
   .projects-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
   }
 
   .project-card {
     border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 10px 12px;
+    border-radius: 12px;
+    padding: 16px 18px;
     text-align: left;
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+    min-height: 140px;
   }
 
   .project-card a {
@@ -227,26 +230,53 @@ body.home-page {
     pointer-events: none;
   }
 
-  .contact-icons {
+  .contact-links {
+    margin-top: 12px;
     display: flex;
-    justify-content: center;
-    gap: 16px;
-    margin-top: 6px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 13px;
   }
 
-  .contact-icons a {
-    color: var(--text);
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+  .contact-link {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    color: var(--text);
+    text-decoration: underline;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
   }
 
-  .contact-icons a:hover,
-  .contact-icons a:focus {
+  .contact-link:hover,
+  .contact-link:focus {
     opacity: 1;
-    outline: none;
+  }
+
+  .contact-icon-img,
+  .contact-icon-svg {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .contact-link span {
+    display: inline-block;
+    line-height: 1.2;
+  }
+
+  .contact-resume {
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 0.75;
+  }
+
+  .contact-resume .contact-link {
+    font-size: 12px;
+    opacity: 0.75;
   }
 
   /* CANVAS */
@@ -314,7 +344,7 @@ body.home-page {
 <nav id="menuPanel" class="menu-panel" aria-label="Site menu">
   <a href="resume.html">Resume</a>
   <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
+  <a href="#contact">Contact</a>
 </nav>
 
 <div class="site-name">Balaji Sridhar</div>
@@ -331,18 +361,18 @@ body.home-page {
   <div class="overlay-section" id="about">
     <h2>About Me</h2>
     <p>
-      I’m Balaji — a computational mechanics PhD student at CMU.
+      I’m Balaji, a computational mechanics PhD student at CMU.
       My work focuses on numerical modeling, continuum mechanics,<br>
       and the design of simulation frameworks.
     </p>
     <p>
       I’m interested in problems where mathematical structure,
-      physical intuition, and computational decisions interact —<br>
+      physical intuition, and computational decisions interact, <br>
       especially when small modeling choices have large consequences.
     </p>
     <p class="interests">
       Current interests include time integration schemes,
-  verification strategies, and modular solver design.
+  optimization, and uncertainty quantification.
     </p>
   </div>
 
@@ -361,31 +391,41 @@ body.home-page {
         <a href="projects/seismic-hazard-analysis-chennai.html">Seismic Hazard Analysis: Chennai</a>
         <p>SVR on building/soil data to flag structural risk.</p>
       </div>
+      <div class="project-card">
+        <a href="projects/smart-chess-board.html">Smart Chess Board</a>
+        <p>Embedded sensing with load cells and signal processing for piece detection.</p>
+      </div>
     </div>
   </div>
 
   <div class="overlay-section centered" id="contact">
     <h2>Contact</h2>
-    <div class="contact-icons">
-      <a href="mailto:balajips@cmu.edu" aria-label="Email Balaji">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <div class="contact-links" aria-hidden="false">
+      <a class="contact-link" href="mailto:balajips@cmu.edu">
+        <svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
           <polyline points="3 7 12 13 21 7"></polyline>
         </svg>
+        <span>balajips@cmu.edu</span>
       </a>
-      <a href="https://www.linkedin.com/in/balaji-pulipakkam-sridhar/" aria-label="LinkedIn profile">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M6.5 9.5v9"></path>
-          <path d="M6.5 5.5a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0Z"></path>
-          <path d="M11.5 18.5v-6a3 3 0 0 1 6 0v6"></path>
-          <path d="M11.5 13.5h6"></path>
+      <a class="contact-link" href="https://www.linkedin.com/in/balaji-pulipakkam-sridhar/">
+        <img src="/linkedin_icon.png" alt="" class="contact-icon-img" aria-hidden="true">
+        <span>linkedin.com/in/balaji-pulipakkam-sridhar</span>
+      </a>
+    </div>
+    <div class="contact-resume">
+      <a class="contact-link" href="/resume.html">
+        <svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 4.5h6l4.5 4.5v10.5a.5.5 0 0 1-.5.5H7.5a.5.5 0 0 1-.5-.5v-15a.5.5 0 0 1 .5-.5Z"></path>
+          <path d="M13 4.5V9h4.5"></path>
+          <path d="M9 13h6"></path>
+          <path d="M9 16h6"></path>
         </svg>
+        <span>Resume</span>
       </a>
     </div>
   </div>
 </div>
-
-<a class="breadcrumb" href="projects.html">Selected work → Projects</a>
 
 <script>
 gsap.registerPlugin(ScrollTrigger);
@@ -535,20 +575,43 @@ gsap.set(overlays, { opacity: 0, y: 30, pointerEvents: "none" });
 
 const sequence = gsap.timeline({
   scrollTrigger: {
+    id: "overlaySequence",
     trigger: overlayContainer,
     start: "top top",
-    end: "+=200%",
-    scrub: true,
+    end: "+=320%",
+    scrub: 1.1,
     pin: true
   }
 });
 
 sequence
-  .to(overlays[0], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 })
-  .to(overlays[0], { opacity: 0, y: -20, pointerEvents: "none", duration: 0.5 })
-  .to(overlays[1], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 })
-  .to(overlays[1], { opacity: 0, y: -20, pointerEvents: "none", duration: 0.5 })
-  .to(overlays[2], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.5 });
+  .to(overlays[0], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8 })
+  .to({}, { duration: 0.8 }) // hold About longer
+  .to(overlays[0], { opacity: 0, y: -30, pointerEvents: "none", duration: 0.6 })
+  .to(overlays[1], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8 })
+  .to({}, { duration: 0.8 }) // hold Projects longer
+  .to(overlays[1], { opacity: 0, y: -30, pointerEvents: "none", duration: 0.6 })
+  .to(overlays[2], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8 })
+  .to({}, { duration: 0.8 }); // hold Contact longer
+
+/* CONTACT LINK HANDLING */
+function scrollToContact(evt) {
+  if (evt) evt.preventDefault();
+  const st = ScrollTrigger.getById("overlaySequence");
+  if (st) {
+    const target = (typeof st.end === "number" ? st.end : st.end + window.scrollY) - 4;
+    window.scrollTo({ top: target, behavior: "smooth" });
+  } else {
+    window.location.hash = "#contact";
+  }
+}
+
+const contactLinks = Array.from(document.querySelectorAll('a[href="#contact"], a[href="/index.html#contact"], a[href="index.html#contact"]'));
+contactLinks.forEach((link) => link.addEventListener("click", scrollToContact));
+
+if (window.location.hash === "#contact") {
+  setTimeout(scrollToContact, 80);
+}
 </script>
 
 </body>
