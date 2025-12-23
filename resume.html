@@ -2,287 +2,334 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Resume | Balaji Pulipakkam Sridhar</title>
+<title>Resume | Balaji Sridhar</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-
-  :root {
-    --bg: #000000;
-    --text: #ffffff;
-    --muted: #b3b3b3;
-    --accent: #94a3b8;
-    --panel: rgba(0,0,0,0.45);
-    --border: rgba(255,255,255,0.15);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', system-ui, sans-serif;
   }
 
-  [data-theme="light"] {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #555555;
-    --accent: #1a73e8;
-    --panel: rgba(255,255,255,0.9);
-    --border: rgba(0,0,0,0.1);
-  }
+:root {
+  --bg-main: #0B0B0C;
+  --bg-elevated: rgba(255,255,255,0.04);
+  --text-primary: #EDEDED;
+  --text-secondary: #9AA0A6;
+  --accent: #8FA3B8;
+  --border-subtle: rgba(255,255,255,0.12);
+  --bg-radial: rgba(255,255,255,0.05);
+  --bg-gradient-top: #0B0B0C;
+  --bg-gradient-bottom: #000000;
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px 60px;
-  }
+  --font-base: 'Montserrat', system-ui, sans-serif;
 
-  .page {
-    width: min(960px, 100%);
-    line-height: 1.7;
-  }
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
 
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 24px;
-  }
+[data-theme="light"] {
+  --bg-main: #F6F7F9;
+  --bg-elevated: rgba(0,0,0,0.035);
+  --text-primary: #0F1115;
+  --text-secondary: #4B5563;
+  --accent: #4B7095;
+  --border-subtle: rgba(0,0,0,0.12);
+  --bg-radial: rgba(0,0,0,0.06);
+  --bg-gradient-top: #F5F6F8;
+  --bg-gradient-bottom: #EAECEF;
+}
 
-  .topbar a {
-    color: var(--text);
-    text-decoration: none;
-    font-weight: 600;
-  }
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      var(--bg-radial),
+      var(--bg-main) 60%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-gradient-top) 0%,
+      var(--bg-gradient-bottom) 100%
+    );
+  color: var(--text-primary);
+  min-height: 100vh;
+}
 
-  .theme-toggle {
-    font-size: 12px;
-    color: var(--text);
-    cursor: pointer;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
+a {
+  color: var(--accent);
+}
 
-  h1 {
-    font-size: 32px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
+.site-header,
+.site-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-  h2 {
-    font-size: 18px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin: 28px 0 12px;
-  }
+.site-header {
+  margin-top: 64px;
+  margin-bottom: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  opacity: 0.9;
+}
 
-  h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
+.site-name-header {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
 
-  p {
-    margin-bottom: 10px;
-  }
+.site-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
 
-  .muted { color: var(--muted); }
+.site-nav a {
+  margin-right: 24px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
 
-  .section { margin-bottom: 10px; }
+.site-nav a:last-child {
+  margin-right: 0;
+}
 
-  .item { margin-bottom: 16px; }
+.site-nav a:hover,
+.site-nav a.active {
+  opacity: 1;
+  color: var(--text-primary);
+  text-decoration: underline;
+}
 
-  .item-meta { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+.theme-toggle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+}
 
-  ul { margin-left: 18px; }
-  ul li { margin-bottom: 6px; }
+.theme-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
 
-  a { color: var(--accent); text-decoration: underline; }
+.site-main {
+  padding-bottom: 80px;
+}
 
-  .pdf-link {
-    display: inline-block;
-    margin-top: 18px;
-    color: var(--muted);
-    text-decoration: underline;
-    font-size: 12px;
-    opacity: 0.75;
-  }
+.page-intro {
+  margin-bottom: 28px;
+}
 
-  .pdf-link-top {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
-    color: var(--muted);
-    text-decoration: underline;
-    font-size: 12px;
-    opacity: 0.8;
-  }
+.page-intro h1 {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
 
-  .pdf-icon {
-    width: 18px;
-    height: 18px;
-    display: block;
-    flex-shrink: 0;
-  }
+.page-intro p {
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
 
-  .divider {
-    margin-top: 28px;
-    border: 0;
-    border-top: 1px solid var(--border);
-  }
+.section {
+  margin-bottom: 36px;
+}
+
+.section h2 {
+  font-size: 18px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 28px 0 12px;
+}
+
+.item {
+  margin-bottom: 16px;
+}
+
+.item h3 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.item-meta {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+p {
+  margin-bottom: 10px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+ul { margin-left: 18px; }
+ul li { margin-bottom: 6px; color: var(--text-secondary); }
+
+.pdf-link-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.pdf-icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.divider {
+  margin-top: 28px;
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+}
 </style>
 </head>
 <body>
-  <div class="page">
-    <div class="topbar">
-      <a href="/index.html">← Home</a>
-      <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-    </div>
 
-    <header class="section">
-      <h1>Resume</h1>
-      <p>This page provides a detailed view of my academic and professional experience. A concise one-page PDF version is available at the bottom of the page.</p>
-      <a class="pdf-link-top" href="BalajiPSridhar_Resume_04_06_24.pdf">
-        <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M7 4.5h6l4.5 4.5v10.5a.5.5 0 0 1-.5.5H7.5a.5.5 0 0 1-.5-.5v-15a.5.5 0 0 1 .5-.5Z"></path>
-          <path d="M13 4.5V9h4.5"></path>
-          <path d="M9 13h6"></path>
-          <path d="M9 16h6"></path>
-        </svg>
-        <span>One-page resume (PDF)</span>
-      </a>
-    </header>
-
-    <section class="section">
-      <h2>Education</h2>
-      <div class="item">
-        <h3>Carnegie Mellon University (GPA: 3.90/4) — Pittsburgh, PA</h3>
-        <div class="item-meta">Doctor of Philosophy, Computational Mechanics — August 2027</div>
-        <p>Coursework: Continuum Mechanics & Multiscale Modelling; Robotic Materials: Designs, Principles & Mechanics; Inelasticity</p>
-      </div>
-      <div class="item">
-        <h3>Carnegie Mellon University (GPA: 3.90/4) — Pittsburgh, PA</h3>
-        <div class="item-meta">Master of Science, Computational Mechanics — August 2024</div>
-        <p>Coursework: Finite Element Methods; Numerical Methods; Probability and Estimation Methods for Engineering Systems</p>
-      </div>
-      <div class="item">
-        <h3>College of Engineering Guindy (CEG), Anna University — Chennai, India</h3>
-        <div class="item-meta">Bachelor of Engineering, Civil Engineering — April 2021</div>
-        <p>Coursework: Transform Techniques and Partial Differential Equations; Construction Materials and Techniques; Structural Analysis II</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Skills</h2>
-      <div class="item">
-        <h3>Programming Languages</h3>
-        <p>Python, C++, C, MATLAB, MicroPython</p>
-      </div>
-      <div class="item">
-        <h3>Technical Tools</h3>
-        <p>FEniCS, Ansys, SolidWorks, AutoCAD, Blender, ArcGIS, Linux, Slurm, Command Line, CMake</p>
-      </div>
-      <div class="item">
-        <h3>Documentation and Version Control</h3>
-        <p>LaTeX, MS Office, Adobe Suite, Git</p>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Projects and Publications</h2>
-      <div class="item">
-        <h3><a href="projects/phase-field-thermomechanics-fracture.html">Phase-field Thermomechanics of Dynamic Fracture</a> — Jan 2023 – Present</h3>
-        <div class="item-meta">Carnegie Mellon University (CMU)</div>
-        <ul>
-          <li>Investigating the coupling of heat transfer with fracture and elastodynamics for crack propagation using phase field models.</li>
-          <li>Applied Python for solving PDEs using computational techniques: staggered scheme, Newmark method, and FEM.</li>
-          <li>Finalist at ASTM M.R. Mitchell Student Presentation Forum on Fatigue and Fracture Mechanics, Nov 8, 2023</li>
-          <li>Presented a Contributed presentation at SIAM Conference on Materials Science, May 2024</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3><a href="projects/aerodynamic-analysis-fsae.html">Aerodynamic Analysis of a Cornering FSAE Race Car for Carnegie Mellon Racing Team</a> — Feb 2023 – May 2023</h3>
-        <div class="item-meta">Carnegie Mellon University (CMU)</div>
-        <ul>
-          <li>Conducted steady-state simulations with a 30 million-cell mesh on Ansys Fluent, utilizing the Bridges-2 supercomputer</li>
-          <li>Generated an aero map and various flow behavior reports, including pressure contours, velocity contours, velocity vectors, and streamlines, to provide actionable optimization recommendations.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3><a href="https://v-srirama.github.io/12778-Project/">Smart Chess Board</a> — Aug 2022 – Dec 2022</h3>
-        <div class="item-meta">Carnegie Mellon University (CMU)</div>
-        <ul>
-          <li>Integrated Raspberry Pico, load cells, and signal amplifiers in a circuit for sensing load distribution among the corners of a chess board and converting analog signals from the load cell into digital signals.</li>
-          <li>Developed code to carry out digital signal processing and the algorithm to determine the position of pieces on a chess board.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3><a href="projects/seismic-hazard-analysis-chennai.html">Seismic Hazard Analysis: A Case Study on Chennai (DOI: 10.1007/978-981-16-8667-2_35)</a> — Oct 2020 – Mar 2021</h3>
-        <div class="item-meta">College of Engineering Guindy (CEG), Anna University</div>
-        <ul>
-          <li>Evaluated the vulnerability of buildings and identified areas in Chennai which are prone to structural damage by implementing Support Vector Regression on the compiled building and soil parametric data which achieved an accuracy of 71 percent.</li>
-          <li>Best Paper presentation award at 5th International Conference on Architecture and Civil Engineering–Singapore, August 2021</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Work Experience</h2>
-      <div class="item">
-        <h3>Teaching Assistant, Probability and Estimation Methods for Infrastructure Systems — Aug 2023 – Dec 2023</h3>
-        <div class="item-meta">Carnegie Mellon University — Pittsburgh, PA</div>
-        <ul>
-          <li>Provided academic assistance to professor and students by facilitating office hours and promoting a positive learning environment.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3>Grader, Solid Mechanics — Jan 2023 – May 2023</h3>
-        <div class="item-meta">Carnegie Mellon University — Pittsburgh, PA</div>
-        <ul>
-          <li>Graded assignments for over 30 students in Solid Mechanics, providing constructive feedback to enhance learning outcomes.</li>
-        </ul>
-      </div>
-      <div class="item">
-        <h3>Project Associate — Oct 2021 – Mar 2022</h3>
-        <div class="item-meta">Indian Institute of Technology, Madras — Chennai, India</div>
-        <ul>
-          <li>Collaborated on corrosion study of anchorage systems in post-tensioned concrete girders in pre-stressed structures.</li>
-          <li>Conducted electrochemical tests (half-cell potential, impedance spectroscopy, linear polarization) for rebar corrosion assessment; performed material characterization (porosimetry, SEM, force tensiometer) for concrete composition assessment.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Volunteering Activities</h2>
-      <div class="item">
-        <p>Propulsion Team Member, CMSR, CMU — Oct 2022 – Present</p>
-        <p>Volunteer, CEG Alumni Association of North America — Aug 2022 – Present</p>
-        <p>Head of Design, Society of Civil Engineers, CEG — Aug 2019 – May 2020</p>
-      </div>
-    </section>
-
-    <hr class="divider">
-    <a class="pdf-link" href="BalajiPSridhar_Resume_04_06_24.pdf">One-page resume (PDF)</a>
+<header class="site-header">
+  <h1 class="site-name-header">Balaji Sridhar</h1>
+  <div class="site-header-top">
+    <nav class="site-nav">
+      <a href="/index.html">Home</a>
+      <a href="/projects.html">Projects</a>
+      <a class="active" href="/resume.html">Resume</a>
+      <a href="/index.html#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">Light / Dark</button>
   </div>
+</header>
+
+<main class="site-main">
+  <div class="page-intro">
+    <h1>Resume</h1>
+    <p>This page provides a detailed view of my academic and professional experience. A concise one-page PDF version is available at the bottom of the page.</p>
+    <a class="pdf-link-top" href="BalajiPSridhar_Resume_04_06_24.pdf">
+      <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M7 4.5h6l4.5 4.5v10.5a.5.5 0 0 1-.5.5H7.5a.5.5 0 0 1-.5-.5v-15a.5.5 0 0 1 .5-.5Z"></path>
+        <path d="M13 4.5V9h4.5"></path>
+        <path d="M9 13h6"></path>
+        <path d="M9 16h6"></path>
+      </svg>
+      <span>One-page resume (PDF)</span>
+    </a>
+  </div>
+
+  <section class="section">
+    <h2>Education</h2>
+    <div class="item">
+      <h3>Carnegie Mellon University (GPA: 3.90/4) — Pittsburgh, PA</h3>
+      <div class="item-meta">Doctor of Philosophy, Computational Mechanics — August 2027</div>
+      <p>Coursework: Continuum Mechanics & Multiscale Modelling; Robotic Materials: Designs, Principles & Mechanics; Inelasticity</p>
+    </div>
+    <div class="item">
+      <h3>Carnegie Mellon University (GPA: 3.90/4) — Pittsburgh, PA</h3>
+      <div class="item-meta">Master of Science, Computational Mechanics — August 2024</div>
+      <p>Coursework: Finite Element Methods; Numerical Methods; Probability and Estimation Methods for Engineering Systems</p>
+    </div>
+    <div class="item">
+      <h3>College of Engineering Guindy (CEG), Anna University — Chennai, India</h3>
+      <div class="item-meta">Bachelor of Engineering, Civil Engineering — April 2021</div>
+      <p>Coursework: Transform Techniques and Partial Differential Equations; Construction Materials and Techniques; Structural Analysis II</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Skills</h2>
+    <div class="item">
+      <h3>Programming Languages</h3>
+      <p>Python, C++, C, MATLAB, MicroPython</p>
+    </div>
+    <div class="item">
+      <h3>Technical Tools</h3>
+      <p>FEniCS, Ansys, SolidWorks, AutoCAD, Blender, ArcGIS, Linux, Slurm, Command Line, CMake</p>
+    </div>
+    <div class="item">
+      <h3>Documentation and Version Control</h3>
+      <p>LaTeX, MS Office, Adobe Suite, Git</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Projects and Publications</h2>
+    <div class="item">
+      <h3><a href="projects/phase-field-thermomechanics-fracture.html">Phase-field Thermomechanics of Dynamic Fracture</a> — Jan 2023 – Present</h3>
+      <div class="item-meta">PhD Research</div>
+      <p>Developing coupled thermo-mechanical phase-field models for dynamic fracture, analyzing stability and numerical behavior in complex transient regimes.</p>
+    </div>
+    <div class="item">
+      <h3><a href="projects/cornering-aerodynamics-fsae.html">Cornering Aerodynamics Analysis of a Formula SAE Race Car</a> — Oct 2022</h3>
+      <div class="item-meta">CFD Study</div>
+      <p>Compared straight-line vs cornering flow to assess downforce and drag trends; evaluated setup sensitivities and implications for race strategy.</p>
+    </div>
+    <div class="item">
+      <h3><a href="projects/seismic-hazard-analysis-chennai.html">Seismic Hazard Analysis: Chennai</a></h3>
+      <div class="item-meta">Machine Learning + Structural Risk</div>
+      <p>Applied support vector regression on building and soil data to flag structural risk patterns in urban settings.</p>
+    </div>
+    <div class="item">
+      <h3><a href="projects/smart-chess-board.html">Smart Chess Board</a></h3>
+      <div class="item-meta">Embedded Systems</div>
+      <p>Built load cell–based sensing with signal processing for move detection and board state tracking.</p>
+    </div>
+  </section>
+
+  <hr class="divider">
+  <p class="pdf-link-top" style="margin-top:16px;">
+    <a href="BalajiPSridhar_Resume_04_06_24.pdf">Download PDF version</a>
+  </p>
+</main>
 
 <script>
   const rootEl = document.documentElement;
-  const toggle = document.querySelector(".theme-toggle");
-  const stored = localStorage.getItem("theme");
-  const initial = stored === "light" || stored === "dark" ? stored : "dark";
-  rootEl.setAttribute("data-theme", initial);
+  const themeToggle = document.querySelector(".theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+  const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+  rootEl.setAttribute("data-theme", initialTheme);
 
-  toggle.addEventListener("click", () => {
+  themeToggle.addEventListener("click", () => {
     const next = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
     rootEl.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
   });
 </script>
+
 </body>
 </html>

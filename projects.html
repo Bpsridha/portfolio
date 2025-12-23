@@ -9,125 +9,250 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-
-  :root {
-    --bg: #000000;
-    --text: #ffffff;
-    --muted: #b3b3b3;
-    --accent: #94a3b8;
-    --panel: rgba(0,0,0,0.45);
-    --border: rgba(255,255,255,0.18);
-    --pattern1: rgba(255,255,255,0.08);
-    --pattern2: rgba(255,255,255,0.06);
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', system-ui, sans-serif;
   }
 
-  [data-theme="light"] {
-    --bg: #ffffff;
-    --text: #111111;
-    --muted: #555555;
-    --accent: #1a73e8;
-    --panel: #ffffff;
-    --border: rgba(0,0,0,0.12);
-    --pattern1: rgba(0,0,0,0.05);
-    --pattern2: rgba(0,0,0,0.04);
-  }
+:root {
+  --bg-main: #0B0B0C;
+  --bg-elevated: rgba(255,255,255,0.04);
+  --text-primary: #EDEDED;
+  --text-secondary: #9AA0A6;
+  --accent: #8FA3B8;
+  --border-subtle: rgba(255,255,255,0.12);
+  --bg-radial: rgba(255,255,255,0.05);
+  --bg-gradient-top: #0B0B0C;
+  --bg-gradient-bottom: #000000;
 
-  body {
-    min-height: 100vh;
-    background: radial-gradient(circle at 30% 20%, var(--pattern1), transparent 40%),
-                radial-gradient(circle at 80% 0%, var(--pattern2), transparent 45%),
-                var(--bg);
-    color: var(--text);
-    padding: 40px 20px 80px;
-  }
-  .topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 28px;
-  }
-  .topbar a { color: var(--text); text-decoration: none; font-weight: 600; }
-  h1 { font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-  p.lead { line-height: 1.6; margin-bottom: 24px; max-width: 720px; }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-  }
-  .card {
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 20px;
-    background: var(--panel);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
-  }
-  .card h2 { font-size: 19px; margin-bottom: 8px; }
-  .card p { line-height: 1.6; margin-bottom: 12px; }
-  .card a { color: var(--text); text-decoration: underline; font-weight: 600; }
+  --font-base: 'Montserrat', system-ui, sans-serif;
 
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 12px;
-    color: var(--text);
-    z-index: 50;
-    cursor: pointer;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.8;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+}
+
+[data-theme="light"] {
+  --bg-main: #F6F7F9;
+  --bg-elevated: rgba(0,0,0,0.035);
+  --text-primary: #0F1115;
+  --text-secondary: #4B5563;
+  --accent: #4B7095;
+  --border-subtle: rgba(0,0,0,0.12);
+  --bg-radial: rgba(0,0,0,0.06);
+  --bg-gradient-top: #F5F6F8;
+  --bg-gradient-bottom: #EAECEF;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      var(--bg-radial),
+      var(--bg-main) 60%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-gradient-top) 0%,
+      var(--bg-gradient-bottom) 100%
+    );
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+a {
+  color: var(--text-primary);
+}
+
+.site-header,
+.site-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.site-header {
+  margin-top: 64px;
+  margin-bottom: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  opacity: 0.9;
+}
+
+.site-name-header {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.site-nav a {
+  margin-right: 24px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.site-nav a:last-child {
+  margin-right: 0;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  opacity: 1;
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.site-main {
+  padding-bottom: 80px;
+}
+
+.page-intro {
+  margin-bottom: 48px;
+}
+
+.page-intro h1 {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.page-intro p {
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 760px;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.project-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  font-weight: 600;
+  margin: 16px;
+}
+
+.project-card h3 a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.project-card p {
+  margin: 0 16px 20px;
+}
+
+.theme-toggle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.site-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
+}
 </style>
 </head>
+
 <body>
-  <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <div class="topbar">
-    <a href="/index.html">← Home</a>
-    <a href="/index.html#contact">Contact</a>
+
+<header class="site-header">
+  <h1 class="site-name-header">Balaji Sridhar</h1>
+  <div class="site-header-top">
+    <nav class="site-nav">
+      <a href="/index.html">Home</a>
+      <a class="active" href="/projects.html">Projects</a>
+      <a href="/resume.html">Resume</a>
+      <a href="/index.html#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">Light / Dark</button>
+  </div>
+</header>
+
+<main class="site-main">
+  <div class="page-intro">
+    <h1>Projects</h1>
+    <p>Selected work across computational mechanics, multiphysics simulation, and accelerated pipelines. Each project dives into problem framing, approach, and results.</p>
   </div>
 
-  <h1>Projects</h1>
-  <p class="lead">Selected work across computational mechanics, multiphysics simulation, and accelerated pipelines. Each project dives into problem framing, approach, and results.</p>
+  <div class="projects-grid"></div>
+</main>
 
-  <div class="grid">
-    <div class="card">
-      <h2>Phase-field Thermomechanics of Dynamic Fracture</h2>
-      <p>Coming soon — full write-up on the coupled thermo-mechanical fracture study will be posted shortly.</p>
-      <a href="/projects/phase-field-thermomechanics-fracture.html">View project</a>
-    </div>
-    <div class="card">
-      <h2>Cornering Aerodynamics Analysis of a Formula SAE Race Car</h2>
-      <p>Comparative CFD of straight-line vs cornering flow to assess downforce/drag trends.</p>
-      <a href="/projects/cornering-aerodynamics-fsae.html">View project</a>
-    </div>
-    <div class="card">
-      <h2>Seismic Hazard Analysis: Chennai</h2>
-      <p>Coming soon — results and methodology for the seismic hazard assessment will be added here.</p>
-      <a href="/projects/seismic-hazard-analysis-chennai.html">View project</a>
-    </div>
-    <div class="card">
-      <h2>Smart Chess Board</h2>
-      <p>Load cell–based embedded sensing with signal processing for move detection and board state tracking.</p>
-      <a href="/projects/smart-chess-board.html">View project</a>
-    </div>
-  </div>
 <script>
   const rootEl = document.documentElement;
-  const toggle = document.querySelector(".theme-toggle");
-  const stored = localStorage.getItem("theme");
-  const initial = stored === "light" || stored === "dark" ? stored : "dark";
-  rootEl.setAttribute("data-theme", initial);
+  const themeToggle = document.querySelector(".theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+  const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+  rootEl.setAttribute("data-theme", initialTheme);
 
-  toggle.addEventListener("click", () => {
+  themeToggle.addEventListener("click", () => {
     const next = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
     rootEl.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
   });
 </script>
+<script type="module">
+import { PROJECTS } from "./assets/projects.js";
+
+const grid = document.querySelector(".projects-grid");
+
+grid.innerHTML = PROJECTS.map(p => `
+  <div class="project-card">
+    <img src="${p.image}" alt="">
+    <h3><a href="${p.url}">${p.title}</a></h3>
+    <p>${p.description}</p>
+  </div>
+`).join("");
+</script>
+
 </body>
 </html>

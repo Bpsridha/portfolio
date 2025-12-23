@@ -9,609 +9,428 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
- 
-<!-- Montserrat Font -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', system-ui, sans-serif;
   }
 
 :root {
-  --bg: #000000;
-  --text: #ffffff;
-  --muted: #b3b3b3;
-  --accent: #94a3b8;
-  --panel: rgba(10, 10, 10, 0.85);
-  --border: rgba(255, 255, 255, 0.2);
+  --bg-main: #0B0B0C;
+  --bg-elevated: rgba(255,255,255,0.04);
+  --text-primary: #EDEDED;
+  --text-secondary: #9AA0A6;
+  --accent: #8FA3B8;
+  --border-subtle: rgba(255,255,255,0.12);
+  --bg-radial: rgba(255,255,255,0.05);
+  --bg-gradient-top: #0B0B0C;
+  --bg-gradient-bottom: #000000;
+
+  --font-base: 'Montserrat', system-ui, sans-serif;
+
+  --radius-md: 12px;
+  --radius-lg: 16px;
 }
 
 [data-theme="light"] {
-  --bg: #ffffff;
-  --text: #111111;
-  --muted: #555555;
-  --accent: #1a73e8;
-  --panel: rgba(255, 255, 255, 0.9);
-  --border: rgba(0, 0, 0, 0.15);
+  --bg-main: #F6F7F9;
+  --bg-elevated: rgba(0,0,0,0.035);
+  --text-primary: #0F1115;
+  --text-secondary: #4B5563;
+  --accent: #4B7095;
+  --border-subtle: rgba(0,0,0,0.12);
+  --bg-radial: rgba(0,0,0,0.06);
+  --bg-gradient-top: #F5F6F8;
+  --bg-gradient-bottom: #EAECEF;
 }
 
-body.home-page {
-  --bg: #000000;
-  --text: #ffffff;
-  --muted: #b3b3b3;
-  --accent: #94a3b8;
-  --panel: rgba(10, 10, 10, 0.85);
-  --border: rgba(255, 255, 255, 0.2);
+body {
+  margin: 0;
+  font-family: var(--font-base);
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      var(--bg-radial),
+      var(--bg-main) 60%
+    ),
+    linear-gradient(
+      180deg,
+      var(--bg-gradient-top) 0%,
+      var(--bg-gradient-bottom) 100%
+    );
+  color: var(--text-primary);
+  min-height: 100vh;
 }
 
-  body {
-    height: 360vh;
-    background: var(--bg);
-    overflow-x: hidden;
-    color: var(--text);
-  }
+a {
+  color: var(--text-primary);
+}
 
-  /* MENU */
-  .menu-text {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    font-size: 20px;
-    color: var(--text);
-    z-index: 220;
-    cursor: pointer;
-    font-weight: 600;
-  }
+.site-header,
+.site-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-  .theme-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 12px;
-    color: var(--text);
-    z-index: 220;
-    cursor: pointer;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.8;
-  }
+.site-header {
+  margin-top: 64px;
+  margin-bottom: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  opacity: 0.9;
+}
 
-  .menu-panel {
-    position: fixed;
-    top: 60px;
-    left: 20px;
-    padding: 14px 16px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    color: var(--text);
-    z-index: 220;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-6px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
+.site-name-header {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
 
-  .menu-panel.open {
+.site-nav a {
+  margin-right: 24px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.site-nav a.active {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.site-nav a:hover {
+  color: var(--text-primary);
+}
+
+.site-main {
+  padding-bottom: 80px;
+}
+
+.section {
+  margin-bottom: 120px;
+}
+
+.section-title {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+p {
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  max-width: 720px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 140px;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: heroFade 420ms ease-out forwards;
+}
+
+.hero-name {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-role {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-primary);
+  max-width: 520px;
+  margin-bottom: 12px;
+}
+
+.hero-sub {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 520px;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  filter: brightness(0.92) saturate(0.9);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.projects-more {
+  margin-top: 16px;
+}
+
+.projects-more a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 600;
+  opacity: 0.9;
+}
+
+.projects-more a:hover {
+  text-decoration: underline;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.contact-link span {
+  color: var(--text-secondary);
+}
+
+.contact-link svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--text-secondary);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.contact-link:hover span {
+  color: var(--text-primary);
+}
+
+.contact-link:hover svg {
+  stroke: var(--text-primary);
+}
+
+.project-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  font-weight: 600;
+  margin: 16px;
+}
+
+.project-card h3 a {
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.project-card p {
+  margin: 0 16px 20px;
+}
+
+.site-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.theme-toggle {
+  font-size: 12px;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.9;
+  cursor: pointer;
+  background: none;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 8px 12px;
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+@keyframes heroFade {
+  to {
     opacity: 1;
-    pointer-events: auto;
     transform: translateY(0);
   }
+}
 
-  .menu-panel a {
-    display: block;
-    color: var(--text);
-    text-decoration: none;
-    margin-bottom: 10px;
-    font-weight: 500;
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
-  .menu-panel a:last-child {
-    margin-bottom: 0;
-  }
-
-  /* UNIFIED SITE NAME (big → small) */
-  .site-name {
-    position: fixed;
-    top: 50%;                 /* Start centered */
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    transform-origin: center center;
-    font-size: 9vw;          /* HUGE intro */
-    font-weight: 700;
-    color: var(--text);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    z-index: 300;
-    white-space: nowrap;
-    pointer-events: none;
-  }
-
-  /* OVERLAY SECTIONS */
-  .overlay-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    z-index: 120;
-    pointer-events: auto;
-  }
-
-  .overlay-section {
-    position: absolute;
-    bottom: 40px;
-    right: 40px;
-    width: 360px;
-    color: var(--text);
-    opacity: 0;
-    transform: translateY(30px);
-    text-align: right;
-    pointer-events: none;
-    background: rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(2px);
-    border-radius: 10px;
-    padding: 14px 16px;
-  }
-  .overlay-section h2 {
-    margin-bottom: 8px;
-  }
-  .overlay-section p {
-    line-height: 1.6;
-  }
-  .overlay-section ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .overlay-section ul li {
-    margin-bottom: 8px;
-  }
-  .overlay-section .interests {
-    font-size: 12px;
-    opacity: 0.7;
-    margin-top: 10px;
-    line-height: 1.5;
-  }
-
-  .projects-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-  }
-
-  .project-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 16px 18px;
-    text-align: left;
-    background: rgba(0, 0, 0, 0.25);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
-    min-height: 140px;
-  }
-
-  .project-card a {
-    color: var(--text);
-    text-decoration: underline;
-    font-weight: 600;
-  }
-
-  .project-card p {
-    margin: 4px 0 0 0;
-    opacity: 0.7;
-    line-height: 1.4;
-  }
-
-  .overlay-section.centered {
-    left: 50%;
-    top: 50%;
-    right: auto;
-    bottom: auto;
-    transform: translate(-50%, -50%) translateY(30px);
-    text-align: center;
-    width: min(720px, 90vw);
-  }
-
-  .projects-cards {
-    text-align: left;
-  }
-
-  .legibility-overlay {
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(circle at 50% 40%, rgba(0,0,0,0.35), rgba(0,0,0,0.45));
-    z-index: 80;
-    pointer-events: none;
-  }
-
-  .contact-links {
-    margin-top: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
-    font-size: 13px;
-  }
-
+@media (max-width: 600px) {
   .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--text);
-    text-decoration: underline;
-    opacity: 0.85;
-    transition: opacity 0.2s ease;
+    font-size: 16px;
   }
-
-  .contact-link:hover,
-  .contact-link:focus {
-    opacity: 1;
-  }
-
-  .contact-icon-img,
-  .contact-icon-svg {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-    flex-shrink: 0;
-    display: block;
-  }
-
-  .contact-link span {
-    display: inline-block;
-    line-height: 1.2;
-  }
-
-  .contact-resume {
-    margin-top: 8px;
-    font-size: 12px;
-    opacity: 0.75;
-  }
-
-  .contact-resume .contact-link {
-    font-size: 12px;
-    opacity: 0.75;
-  }
-
-  /* CANVAS */
-  #canvas1 {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    background: black;
-    filter: blur(6px);
-  }
-
-  /* Scroll cue */
-  .scroll-cue {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--text);
-    z-index: 210;
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    pointer-events: none;
-    opacity: 0.8;
-  }
-
-  .scroll-cue .arrow {
-    width: 10px;
-    height: 16px;
-    border-left: 1px solid var(--text);
-    border-bottom: 1px solid var(--text);
-    transform: rotate(-45deg);
-    animation: float 1.4s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: rotate(-45deg) translateY(0); }
-    50% { transform: rotate(-45deg) translateY(6px); }
-  }
-
-  .breadcrumb {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    font-size: 12px;
-    color: var(--text);
-    opacity: 0.65;
-    z-index: 210;
-    text-decoration: none;
-  }
-
+}
 </style>
 </head>
 
-<body class="home-page">
+<body>
 
-<div class="menu-text" role="button" aria-expanded="false" aria-controls="menuPanel">MENU</div>
-<div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-<nav id="menuPanel" class="menu-panel" aria-label="Site menu">
-  <a href="resume.html">Resume</a>
-  <a href="projects.html">Projects</a>
-  <a href="#contact">Contact</a>
-</nav>
+<header class="site-header">
+  <h1 class="site-name-header">Balaji Sridhar</h1>
+  <div class="site-header-top">
+    <nav class="site-nav">
+      <a href="#about">About</a>
+      <a href="/projects.html">Projects</a>
+      <a href="/resume.html">Resume</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle theme">Light / Dark</button>
+  </div>
+</header>
 
-<div class="site-name">Balaji Sridhar</div>
+<main class="site-main">
 
-<canvas id="canvas1"></canvas>
-<div class="legibility-overlay"></div>
-
-<div class="scroll-cue" aria-hidden="true">
-  <span>Scroll</span>
-  <div class="arrow"></div>
-</div>
-
-<div class="overlay-container" id="overlayContainer">
-  <div class="overlay-section" id="about">
-    <h2>About Me</h2>
-    <p>
-      I’m Balaji, a computational mechanics PhD student at CMU.
-      My work focuses on numerical modeling, continuum mechanics,<br>
-      and the design of simulation frameworks.
+<section class="hero">
+  <div class="hero-text">
+    <h1 class="hero-name">Balaji Sridhar</h1>
+    <p class="hero-role">
+      Computational mechanics researcher focused on numerical methods,
+      continuum modeling, and simulation framework design.
     </p>
-    <p>
-      I’m interested in problems where mathematical structure,
-      physical intuition, and computational decisions interact, <br>
-      especially when small modeling choices have large consequences.
-    </p>
-    <p class="interests">
-      Current interests include time integration schemes,
-  optimization, and uncertainty quantification.
+    <p class="hero-sub">
+      Interests include time integration, uncertainty quantification,
+      and applied quantitative problems.
     </p>
   </div>
 
-  <div class="overlay-section centered" id="projects">
-    <h2>Projects</h2>
-    <div class="projects-cards">
-      <div class="project-card">
-        <a href="projects/phase-field-thermomechanics-fracture.html">Phase-field Thermomechanics of Dynamic Fracture</a>
-        <p>Coupled heat transfer and fracture via phase-field models.</p>
-      </div>
-      <div class="project-card">
-        <a href="projects/cornering-aerodynamics-fsae.html">Cornering Aerodynamics Analysis of a Formula SAE Race Car</a>
-        <p>Comparative CFD of straight-line vs cornering flow to assess downforce/drag trends.</p>
-      </div>
-      <div class="project-card">
-        <a href="projects/seismic-hazard-analysis-chennai.html">Seismic Hazard Analysis: Chennai</a>
-        <p>SVR on building/soil data to flag structural risk.</p>
-      </div>
-      <div class="project-card">
-        <a href="projects/smart-chess-board.html">Smart Chess Board</a>
-        <p>Embedded sensing with load cells and signal processing for piece detection.</p>
-      </div>
-    </div>
+  <div class="hero-image">
+    <img src="/assets/portrait.jpeg" alt="Portrait of Balaji Sridhar">
   </div>
+</section>
 
-  <div class="overlay-section centered" id="contact">
-    <h2>Contact</h2>
-    <div class="contact-links" aria-hidden="false">
-      <a class="contact-link" href="mailto:balajips@cmu.edu">
-        <svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
-          <polyline points="3 7 12 13 21 7"></polyline>
-        </svg>
-        <span>balajips@cmu.edu</span>
-      </a>
-      <a class="contact-link" href="https://www.linkedin.com/in/balaji-pulipakkam-sridhar/">
-        <img src="/linkedin_icon.png" alt="" class="contact-icon-img" aria-hidden="true">
-        <span>linkedin.com/in/balaji-pulipakkam-sridhar</span>
-      </a>
-    </div>
-    <div class="contact-resume">
-      <a class="contact-link" href="/resume.html">
-        <svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M7 4.5h6l4.5 4.5v10.5a.5.5 0 0 1-.5.5H7.5a.5.5 0 0 1-.5-.5v-15a.5.5 0 0 1 .5-.5Z"></path>
-          <path d="M13 4.5V9h4.5"></path>
-          <path d="M9 13h6"></path>
-          <path d="M9 16h6"></path>
-        </svg>
-        <span>Resume</span>
-      </a>
-    </div>
+<section id="about" class="section">
+  <h2 class="section-title">About</h2>
+  <p>
+    I am a computational mechanics PhD researcher focused on numerical modeling,
+    continuum mechanics, and simulation framework design.
+  </p>
+  <p>
+    My interests sit at the intersection of mathematical structure,
+    physical intuition, and computational decision-making.
+  </p>
+</section>
+
+<section id="projects" class="section">
+  <h2 class="section-title">Selected Projects</h2>
+  <div class="projects-grid"></div>
+  <div class="projects-more">
+    <a href="/projects.html">View all projects →</a>
   </div>
-</div>
+</section>
+
+<section id="contact" class="section">
+  <h2 class="section-title">Get in touch</h2>
+
+  <div class="contact-links">
+    <a class="contact-link" href="mailto:balajips@cmu.edu">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3" y="5" width="18" height="14" rx="2" ry="2"></rect>
+        <polyline points="3 7 12 13 21 7"></polyline>
+      </svg>
+      <span>balajips@cmu.edu</span>
+    </a>
+
+    <a class="contact-link" href="https://www.linkedin.com/in/balaji-pulipakkam-sridhar/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+        <rect x="2" y="9" width="4" height="12"></rect>
+        <circle cx="4" cy="4" r="2"></circle>
+      </svg>
+      <span>LinkedIn</span>
+    </a>
+
+    <a class="contact-link" href="/resume.html">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 4h7l5 5v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"></path>
+        <path d="M14 4v5h5"></path>
+        <path d="M9 13h6"></path>
+        <path d="M9 16h6"></path>
+      </svg>
+      <span>Resume</span>
+    </a>
+  </div>
+</section>
+
+</main>
 
 <script>
-gsap.registerPlugin(ScrollTrigger);
+  const rootEl = document.documentElement;
+  const themeToggle = document.querySelector(".theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+  const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+  rootEl.setAttribute("data-theme", initialTheme);
 
-/* ====== FRAME SEQUENCE ====== */
-
-const frameCount = 135;
-const canvas = document.getElementById("canvas1");
-const context = canvas.getContext("2d");
-
-function frameFile(i) {
-  return `assets/scene1/ezgif-frame-${String(i).padStart(3,'0')}.jpg`;
-}
-
-const images = [];
-for (let i = 1; i <= frameCount; i++) {
-  const img = new Image();
-  img.src = frameFile(i);
-  images.push(img);
-}
-
-function resizeCanvas() {
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = window.innerWidth * dpr;
-  canvas.height = window.innerHeight * dpr;
-  context.setTransform(dpr, 0, 0, dpr, 0, 0);
-}
-resizeCanvas();
-window.addEventListener("resize", resizeCanvas);
-
-function renderFrame(i) {
-  const img = images[i];
-  if (!img) return;
-
-  const cw = canvas.width / (window.devicePixelRatio || 1);
-  const ch = canvas.height / (window.devicePixelRatio || 1);
-  const imgAspect = img.width / img.height;
-  const canvasAspect = cw / ch;
-
-  let drawWidth, drawHeight;
-  if (imgAspect > canvasAspect) {
-    drawHeight = ch;
-    drawWidth = drawHeight * imgAspect;
-  } else {
-    drawWidth = cw;
-    drawHeight = drawWidth / imgAspect;
+  function toggleTheme() {
+    const next = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    rootEl.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
   }
 
-  const dx = (cw - drawWidth) / 2;
-  const dy = (ch - drawHeight) / 2;
+  themeToggle.addEventListener("click", toggleTheme);
+</script>
+<script type="module">
+import { PROJECTS } from "./assets/projects.js";
 
-  context.clearRect(0,0,cw,ch);
-  context.drawImage(img, dx, dy, drawWidth, drawHeight);
-}
+const grid = document.querySelector(".projects-grid");
 
-images[0].onload = () => renderFrame(0);
+const featured = PROJECTS.filter(p => p.featured).slice(0, 3);
 
-const frame = { value: 0 };
-gsap.to(frame, {
-  value: frameCount - 1,
-  ease: "none",
-  scrollTrigger: {
-    trigger: document.body,
-    start: "top top",
-    end: "bottom bottom",
-    scrub: 1
-  },
-  onUpdate: () => renderFrame(Math.floor(frame.value))
-});
-
-/* REMOVE BLUR */
-gsap.to("#canvas1", {
-  filter: "blur(0px)",
-  scrollTrigger: {
-    trigger: document.body,
-    start: "top top",
-    end: "25% top",
-    scrub: true
-  }
-});
-
-/* ABOUT FADE */
-gsap.to(".about-bottom-right", {
-  opacity: 1,
-  y: 0,
-  scrollTrigger: {
-    trigger: document.body,
-    start: "10% top",
-    end: "20% top",
-    scrub: true
-  }
-});
-
-/* ====== BIG NAME → TOP CENTER (PERFECT) ====== */
-
-gsap.to(".site-name", {
-  y: -300,                  // moves upward
-  scale: 0.2,               // shrinks smoothly
-  ease: "none",
-  scrollTrigger: {
-    trigger: document.body,
-    start: "top top",
-    end: "15% top",
-    scrub: true
-  }
-});
-
-/* MENU TOGGLE */
-const menuButton = document.querySelector(".menu-text");
-const menuPanel = document.getElementById("menuPanel");
-menuButton.addEventListener("click", () => {
-  const isOpen = menuPanel.classList.toggle("open");
-  menuButton.setAttribute("aria-expanded", isOpen ? "true" : "false");
-});
-
-/* Theme toggle */
-const rootEl = document.documentElement;
-const themeToggle = document.querySelector(".theme-toggle");
-const savedTheme = localStorage.getItem("theme");
-const initialTheme = savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
-rootEl.setAttribute("data-theme", initialTheme);
-
-function toggleTheme() {
-  const next = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
-  rootEl.setAttribute("data-theme", next);
-  localStorage.setItem("theme", next);
-}
-
-themeToggle.addEventListener("click", toggleTheme);
-
-/* Hide scroll cue after initial scroll */
-gsap.to(".scroll-cue", {
-  opacity: 0,
-  scrollTrigger: {
-    trigger: document.body,
-    start: "8% top",
-    end: "18% top",
-    scrub: true
-  }
-});
-
-/* SECTION SEQUENCE */
-const overlayContainer = document.getElementById("overlayContainer");
-const overlays = [document.getElementById("about"), document.getElementById("projects"), document.getElementById("contact")];
-
-gsap.set(overlays, { opacity: 0, y: 30, pointerEvents: "none" });
-
-const sequence = gsap.timeline({
-  scrollTrigger: {
-    id: "overlaySequence",
-    trigger: overlayContainer,
-    start: "top top",
-    end: "+=320%",
-    scrub: 1.1,
-    pin: true
-  }
-});
-
-sequence
-  .to(overlays[0], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8 })
-  .to({}, { duration: 0.8 }) // hold About longer
-  .to(overlays[0], { opacity: 0, y: -30, pointerEvents: "none", duration: 0.6 })
-  .to(overlays[1], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8 })
-  .to({}, { duration: 0.8 }) // hold Projects longer
-  .to(overlays[1], { opacity: 0, y: -30, pointerEvents: "none", duration: 0.6 })
-  .to(overlays[2], { opacity: 1, y: 0, pointerEvents: "auto", duration: 0.8 })
-  .to({}, { duration: 0.8 }); // hold Contact longer
-
-/* CONTACT LINK HANDLING */
-function scrollToContact(evt) {
-  if (evt) evt.preventDefault();
-  const st = ScrollTrigger.getById("overlaySequence");
-  if (st) {
-    const target = (typeof st.end === "number" ? st.end : st.end + window.scrollY) - 4;
-    window.scrollTo({ top: target, behavior: "smooth" });
-  } else {
-    window.location.hash = "#contact";
-  }
-}
-
-const contactLinks = Array.from(document.querySelectorAll('a[href="#contact"], a[href="/index.html#contact"], a[href="index.html#contact"]'));
-contactLinks.forEach((link) => link.addEventListener("click", scrollToContact));
-
-if (window.location.hash === "#contact") {
-  setTimeout(scrollToContact, 80);
-}
+grid.innerHTML = featured.map(p => `
+  <div class="project-card">
+    <img src="${p.image}" alt="">
+    <h3><a href="${p.url}">${p.title}</a></h3>
+    <p>${p.description}</p>
+  </div>
+`).join("");
 </script>
 
 </body>
