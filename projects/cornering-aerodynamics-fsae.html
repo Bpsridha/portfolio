@@ -146,14 +146,19 @@
       <nav class="top-nav" aria-label="Page links">
         <a href="/projects.html">← Back to Projects</a>
       </nav>
-      <h1>Cornering Aerodynamics Analysis of a Formula SAE Race Car</h1>
-      <p class="muted">Aerodynamic performance under straight-line and cornering flow conditions</p>
+      <h1>Cornering Aerodynamics of a Formula SAE Race Car</h1>
+
+      <p class="muted">Quantifying aerodynamic performance under straight-line and cornering flow conditions</p>
+
+      <p>Semester-long team project conducted with Carnegie Mellon Racing as part of a graduate CFD course.</p>
+
       <div class="meta">
-        <p><strong>Institution / Team:</strong> Carnegie Mellon Racing (Formula SAE)</p>
-        <p><strong>Project type:</strong> Team research project</p>
+        <p><strong>Institution:</strong> Carnegie Mellon University</p>
+        <p><strong>Course:</strong> Computational Analysis of Transport Phenomena</p>
         <p><strong>Year:</strong> 2023</p>
-        <p><strong>Role:</strong> Aerodynamics contributor</p>
+        <p><strong>Role:</strong> Meshing strategy, simulation execution, and HPC workflow ownership</p>
       </div>
+
     </header>
 
     <nav class="toc" aria-label="Contents">
@@ -171,18 +176,19 @@
 
     <section id="context">
       <h2>Context</h2>
-      <p>Formula SAE race cars operate predominantly in cornering conditions, where vehicle performance depends strongly on aerodynamic downforce and drag. Aerodynamic analysis is often performed assuming straight-line flow due to the simplicity of uniform inlet conditions and rectangular CFD domains.</p>
-      <p>This work quantifies how aerodynamic forces change when the car experiences a velocity gradient across its width, as occurs during steady-state cornering. The comparison helps interpret straight-line CFD results against cornering performance needs.</p>
+
+      <p>Formula SAE lap time is dominated by cornering performance, where available lateral grip limits vehicle speed more than straight-line acceleration. Aerodynamic downforce plays a critical role in this regime by increasing tire normal force and improving cornering capability.</p>
+      <p>Aerodynamic development is typically performed using straight-line CFD simulations due to their simpler domain setup and boundary conditions. While these simulations are effective for relative design comparison, they do not explicitly model the turning flow field experienced by the car during steady-state cornering.</p>
+      <p>This project evaluates how aerodynamic performance changes when the vehicle is subjected to a lateral velocity gradient representative of steady-state cornering. By comparing straight-line and cornering flow cases under consistent modeling assumptions, the study assesses how well conventional straight-line simulations capture cornering-relevant aerodynamic behavior.</p>
     </section>
+
 
     <section id="approach">
       <h2>Approach</h2>
-      <p>Designed a comparative CFD study between straight-line flow and cornering flow conditions. The analysis centers on relative aerodynamic performance metrics, particularly the downforce-to-drag ratio.</p>
-      <ul>
-        <li>Straight-line domain with uniform inlet velocity and symmetry conditions (baseline).</li>
-        <li>Cornering domain with lateral velocity gradient to represent steady-state turning.</li>
-      </ul>
-      <p>Both domains run across multiple velocities to isolate aerodynamic impact from flow curvature while keeping solver settings consistent.</p>
+      <p>The study was structured as a controlled comparison between straight-line and cornering flow conditions, with the goal of isolating the aerodynamic impact of turning flow while holding all other modeling choices constant.</p>
+      <p>A conventional straight-line CFD domain with uniform inlet velocity was used as the baseline case. Cornering was modeled using a curved, pie-shaped domain that imposed a lateral velocity gradient across the vehicle width, representing steady-state turning at a fixed radius.</p>
+      <p>Both configurations were evaluated across multiple vehicle speeds using identical turbulence modeling, meshing strategy, and solver settings. This ensured that observed differences in aerodynamic performance could be attributed to flow curvature rather than numerical or modeling artifacts.</p>
+      <p>Because absolute force comparisons are sensitive to velocity magnitude and domain differences, aerodynamic performance was assessed primarily using the downforce-to-drag ratio. This metric provides a robust basis for comparison across flow conditions and highlights changes in aerodynamic efficiency relevant to vehicle handling.</p>
     </section>
 
     <section id="implementation-tools">
