@@ -134,6 +134,41 @@
     opacity: 0.9;
     margin-bottom: 8px;
   }
+
+  .project-cover {
+    margin: 24px auto 36px;
+    text-align: center;
+    border: none;
+    padding: 0;
+  }
+  .project-cover img {
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    display: block;
+    margin: 0 auto;
+  }
+  [data-theme="light"] .project-cover img {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+  .project-cover figcaption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    opacity: 0.75;
+    line-height: 1.4;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 640px) {
+    .project-cover { margin: 18px auto 28px; }
+    .project-cover img { border-radius: 10px; }
+    .project-cover figcaption { font-size: 0.9rem; }
+  }
 </style>
 </head>
 <body>
@@ -144,6 +179,11 @@
       <a href="/projects.html">← Back to Projects</a>
     </nav>
     <header>
+      <figure class="project-cover">
+        <!-- TODO: Update src with the final cover image for this project -->
+        <img src="assets/images/project-cover.jpg" alt="Smart chess board cover image placeholder">
+        <figcaption>Placeholder cover visualization for this embedded systems project.</figcaption>
+      </figure>
       <h1>Smart Chess Board</h1>
       <div class="meta">
         <p><strong>Institution / Team:</strong> Carnegie Mellon University</p>
