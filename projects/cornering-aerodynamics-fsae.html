@@ -106,6 +106,20 @@
 
   figure { border: 1px dashed var(--border); padding: 10px; margin: 10px 0 14px; text-align: center; }
   figcaption { margin-top: 6px; color: var(--muted); font-size: 14px; }
+  .mesh-figure {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.06);
+  }
+  .mesh-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
 
   a { color: var(--accent); }
 
@@ -343,12 +357,13 @@
         <li>All simulations executed on the Bridges-2 high-performance computing cluster to support large-scale parametric runs</li>
       </ul>
 
-      <figure>
-        <div>/assets/cornering_car/straight_mesh.png </div>
+      <figure class="mesh-figure">
+        <img src="/assets/cornering_car/straight_mesh.png" alt="Straight-line CFD domain mesh">
         <figcaption>Straight-line domain mesh</figcaption>
       </figure>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
+
+      <figure class="mesh-figure">
+        <img src="/assets/cornering_car/corner_mesh.png" alt="Cornering CFD domain mesh">
         <figcaption>Cornering domain mesh</figcaption>
       </figure>
       <figure>
