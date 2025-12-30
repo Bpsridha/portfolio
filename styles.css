@@ -1,0 +1,13 @@
+:root {
+  --hero-bg: rgba(10, 12, 16, 0.85);
+  --hero-border: rgba(255, 255, 255, 0.1);
+  --hero-text-primary: #f2f2f2;
+  --hero-text-secondary: #cfcfcf;
+  --hero-accent: rgba(255, 255, 255, 0.35);
+  --hero-overlay: linear-gradient(
+    115deg,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}

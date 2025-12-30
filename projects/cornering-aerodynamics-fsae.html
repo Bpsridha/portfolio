@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -137,64 +138,156 @@
   .toc h2 { margin: 0 0 8px; }
   .toc ol { margin-left: 18px; }
 
-  .project-cover {
-    margin: 24px auto 36px;
-    text-align: center;
-    border: none;
-    padding: 0;
-  }
-  .project-cover img {
-    width: 100%;
-    max-width: 900px;
-    height: auto;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
-    display: block;
-    margin: 0 auto;
-  }
-  [data-theme="light"] .project-cover img {
-    border-color: rgba(0, 0, 0, 0.12);
-  }
-  .project-cover figcaption {
-    margin-top: 10px;
-    font-size: 0.95rem;
-    opacity: 0.75;
-    line-height: 1.4;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
+  .project-hero {
+    position: relative;
+    min-height: 360px;
+    border-radius: 22px;
+    overflow: hidden;
+    isolation: isolate;
+    margin: 28px 0 26px 0;
+    background: rgba(10, 12, 16, 0.6);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
   }
 
-  @media (max-width: 640px) {
-    .project-cover { margin: 18px auto 28px; }
-    .project-cover img { border-radius: 10px; }
-    .project-cover figcaption { font-size: 0.9rem; }
+  .project-hero__media {
+    position: absolute;
+    inset: 0;
+    background-image: var(--project-cover);
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .project-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--hero-overlay);
+    pointer-events: none;
+  }
+
+  .project-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    padding: 34px 32px 30px 32px;
+    background: var(--hero-bg);
+    border: 1px solid var(--hero-border);
+    color: var(--hero-text-primary);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+  }
+
+  .project-hero__content::before {
+  }
+
+  .project-hero__kicker {
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--hero-text-secondary);
+  }
+
+  .project-hero__title {
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    line-height: 1.05;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--hero-text-primary);
+  }
+
+  .project-hero__subtitle {
+    max-width: 62ch;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    color: var(--hero-text-secondary);
+  }
+
+  .project-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 18px;
+  }
+
+  .project-hero__meta-item {
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .project-hero__meta-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+    color: var(--hero-text-secondary);
+  }
+
+  .project-hero__meta-value {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: var(--hero-text-secondary);
+  }
+
+  @media (max-width: 820px) {
+    .project-hero {
+      min-height: 420px;
+    }
+
+    .project-hero__content {
+      padding: 26px 18px 22px 18px;
+    }
+
+    .project-hero__meta {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
 <body>
   <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <main>
-    <header>
-      <nav class="top-nav" aria-label="Page links">
-        <a href="/projects.html">← Back to Projects</a>
-      </nav>
-      <figure class="project-cover">
-        <img src="/assets/cornering_car/cornering_car.png" alt="CFD visualization illustrating cornering aerodynamics for the CMU Racing car">
-      </figure>
-      <h1>Cornering Aerodynamics of a Formula SAE Race Car</h1>
+  <main class="project-page" data-project-id="cornering-aerodynamics-fsae" style="--project-cover: url('/assets/cornering_car/cornering_car.png');">
+    <nav class="top-nav" aria-label="Page links">
+      <a href="/projects.html">&lt; Back to Projects</a>
+    </nav>
 
-      <p class="muted">Quantifying aerodynamic performance under straight-line and cornering flow conditions</p>
+    <header class="project-hero" aria-label="Project overview">
+      <div class="project-hero__media"></div>
 
-      <p>Semester-long team project conducted with Carnegie Mellon Racing as part of a graduate CFD course.</p>
+      <div class="project-hero__overlay" aria-hidden="true"></div>
 
-      <div class="meta">
-        <p><strong>Institution:</strong> Carnegie Mellon University</p>
-        <p><strong>Course:</strong> Computational Analysis of Transport Phenomena</p>
-        <p><strong>Year:</strong> 2023</p>
-        <p><strong>Role:</strong> Meshing strategy, simulation execution, and HPC workflow ownership</p>
+      <div class="project-hero__content">
+        <p class="project-hero__kicker">Carnegie Mellon University | 2023</p>
+
+        <h1 class="project-hero__title">
+          Cornering Aerodynamics Analysis of a Formula SAE Race Car
+        </h1>
+
+        <p class="project-hero__subtitle">
+          Quantifying aerodynamic performance under straight-line and cornering flow conditions
+        </p>
+        <div class="project-hero__meta">
+          <div class="project-hero__meta-item">
+            <span class="project-hero__meta-label">Context</span>
+            <span class="project-hero__meta-value">
+              Graduate CFD capstone project, Computational Analysis of Transport Phenomena
+            </span>
+          </div>
+
+          <div class="project-hero__meta-item">
+            <span class="project-hero__meta-label">Role</span>
+            <span class="project-hero__meta-value">
+              Large-scale CFD simulation execution and high-performance computing workflow coordination
+            </span>
+          </div>
+        </div>
       </div>
     </header>
 
@@ -212,54 +305,46 @@
     </nav>
 
     <section id="context">
-      <h2>Context</h2>
-
-      <p>Formula SAE lap time is dominated by cornering performance, where available lateral grip limits vehicle speed more than straight-line acceleration. Aerodynamic downforce plays a critical role in this regime by increasing tire normal force and improving cornering capability.</p>
-      <p>Aerodynamic development is typically performed using straight-line CFD simulations due to their simpler domain setup and boundary conditions. While these simulations are effective for relative design comparison, they do not explicitly model the turning flow field experienced by the car during steady-state cornering.</p>
-      <p>This project evaluates how aerodynamic performance changes when the vehicle is subjected to a lateral velocity gradient representative of steady-state cornering. By comparing straight-line and cornering flow cases under consistent modeling assumptions, the study assesses how well conventional straight-line simulations capture cornering-relevant aerodynamic behavior.</p>
+    <h2>Context</h2>
+      <p>In Formula SAE, overall performance is driven primarily by cornering behavior, where available lateral grip limits vehicle speed more than straight-line acceleration. Aerodynamic downforce plays a key role by increasing tire normal force and improving cornering capability.</p>
+      <p>Despite this, aerodynamic development is commonly performed using straight-line CFD simulations due to their simpler domains and boundary conditions. While effective for relative design comparison, these simulations do not explicitly capture the turning flow field experienced during steady-state cornering.</p>
+      <p>This project examines how aerodynamic performance changes when the vehicle is subjected to a lateral velocity gradient representative of steady-state cornering, and evaluates how reliably straight-line CFD results reflect cornering-relevant aerodynamic behavior.</p>
     </section>
-
 
     <section id="approach">
       <h2>Approach</h2>
-      <p>The study was structured as a controlled comparison between straight-line and cornering flow conditions, with the goal of isolating the aerodynamic impact of turning flow while holding all other modeling choices constant.</p>
-      <p>A conventional straight-line CFD domain with uniform inlet velocity was used as the baseline case. Cornering was modeled using a curved, pie-shaped domain that imposed a lateral velocity gradient across the vehicle width, representing steady-state turning at a fixed radius.</p>
-      <p>Both configurations were evaluated across multiple vehicle speeds using identical turbulence modeling, meshing strategy, and solver settings. This ensured that observed differences in aerodynamic performance could be attributed to flow curvature rather than numerical or modeling artifacts.</p>
-      <p>Because absolute force comparisons are sensitive to velocity magnitude and domain differences, aerodynamic performance was assessed primarily using the downforce-to-drag ratio. This metric provides a robust basis for comparison across flow conditions and highlights changes in aerodynamic efficiency relevant to vehicle handling.</p>
+        <p>The study compares aerodynamic performance under conventional straight-line flow and steady-state cornering flow using two distinct CFD domain setups. Straight-line simulations were performed in a rectangular domain with uniform inlet velocity and symmetry applied, while cornering simulations used a curved, pie-shaped domain with a prescribed lateral velocity gradient across the vehicle width.</p>
+        <p>The straight-line case leveraged geometric symmetry and was modeled on a half-car, whereas the cornering configuration required a full-car model due to inherent flow asymmetry. All simulations used consistent turbulence modeling, discretization schemes, and boundary conditions to isolate the effect of turning flow.</p>
+        <p>Because the cornering domain introduces a spatial variation in local flow velocity, absolute force comparisons are not directly equivalent between cases. Aerodynamic performance was therefore evaluated primarily using the downforce-to-drag ratio, which provides a consistent and physically meaningful metric for comparing aerodynamic efficiency across straight-line and cornering conditions.</p>
     </section>
 
     <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
       <p><strong>Geometry and Domain Setup</strong></p>
       <ul>
-        <li>Simplified but aerodynamically representative CAD model including front and rear wings, chassis and driver body, and wheels</li>
-        <li>Two computational domains: rectangular straight-line domain and pie-shaped cornering domain</li>
+        <li>Simplified but aerodynamically representative CAD model including front and rear wings, chassis, driver body, and wheels</li>
+        <li>Watertight geometry preparation to ensure robust volume meshing and consistent preprocessing across all configurations</li>
+        <li>Rectangular straight-line domain with symmetry applied and curved pie-shaped domain for cornering flow, balancing computational cost with physical fidelity</li>
       </ul>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Simplified CAD model of the 2023 CMR Formula SAE car</figcaption>
-      </figure>
 
       <p><strong>CFD Solver and Physics</strong></p>
       <ul>
-        <li>Solver: ANSYS Fluent (pressure-based coupled solver)</li>
-        <li>Flow model: Incompressible RANS</li>
-        <li>Turbulence model: k-omega SST</li>
-        <li>Discretization: Second-order spatial schemes</li>
-        <li>Boundary conditions: moving ground, rotating wheels, velocity inlet with imposed lateral gradient (cornering case)</li>
+        <li>ANSYS Fluent pressure-based coupled solver for steady-state external aerodynamics</li>
+        <li>Incompressible RANS formulation with k-omega SST turbulence model, suitable for adverse pressure gradients and separated flow</li>
+        <li>Second-order spatial discretization schemes to reduce numerical diffusion</li>
+        <li>Boundary conditions including moving ground, rotating wheels, and velocity inlet with imposed lateral gradient for cornering cases</li>
       </ul>
 
       <p><strong>Mesh Strategy and Compute</strong></p>
       <ul>
-        <li>Watertight geometry meshing workflow</li>
-        <li>Poly-hexcore volume mesh</li>
-        <li>Boundary layer resolution with first cell height approx 0.5 mm and y+ approx 30</li>
-        <li>Mesh sizes ranging from 8 million to 21 million cells</li>
-        <li>Simulations run on the Bridges-2 HPC cluster</li>
+        <li>Watertight geometry meshing workflow using poly-hexcore volume meshes for efficient resolution of large external flow domains</li>
+        <li>Boundary layer resolution targeting first cell heights of approximately 0.5 mm and y-plus values around 30 for wall-resolved RANS modeling</li>
+        <li>Mesh sizes ranging from approximately 8 million to 21 million cells depending on configuration and domain extent</li>
+        <li>All simulations executed on the Bridges-2 high-performance computing cluster to support large-scale parametric runs</li>
       </ul>
 
       <figure>
-        <div>FIGURE PLACEHOLDER</div>
+        <div>/assets/cornering_car/straight_mesh.png </div>
         <figcaption>Straight-line domain mesh</figcaption>
       </figure>
       <figure>
@@ -389,5 +474,28 @@
     localStorage.setItem("theme", next);
   });
 </script>
+<script type="module">
+import { PROJECTS } from "../assets/projects.js?v=cover-debug";
+
+const page = document.querySelector(".project-page");
+const resolveCover = (path) => {
+  if (!path) return "";
+  if (window.location.protocol === "file:") {
+    return new URL(path, window.location.href).toString();
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, window.location.origin).toString();
+};
+const project = PROJECTS.find(p => p.id === page?.dataset.projectId);
+
+if (page && project?.coverImage) {
+  const coverUrl = resolveCover(project.coverImage);
+  page.style.setProperty("--project-cover", `url('${coverUrl}')`);
+  console.log("PROJECT DEBUG:", project.id, project.coverImage);
+  console.log("CSS VAR SET (page):", page.style.getPropertyValue("--project-cover"));
+}
+</script>
 </body>
 </html>
+
+

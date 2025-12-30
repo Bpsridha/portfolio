@@ -9,6 +9,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/styles.css">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
@@ -241,10 +242,12 @@ p {
   overflow: hidden;
 }
 
-.project-card img {
+.project-card__image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  background-image: var(--project-cover);
+  background-size: cover;
+  background-position: center;
 }
 
 .project-card h3 {
@@ -418,19 +421,37 @@ p {
   themeToggle.addEventListener("click", toggleTheme);
 </script>
 <script type="module">
-import { PROJECTS } from "./assets/projects.js";
+import { PROJECTS } from "./assets/projects.js?v=cover-debug";
 
 const grid = document.querySelector(".projects-grid");
 
+const resolveCover = (path) => {
+  console.log("PROJECT DEBUG: resolveCover input", path);
+  if (!path) return "";
+  if (window.location.protocol === "file:") {
+    return new URL(path, window.location.href).toString();
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, window.location.origin).toString();
+};
+
 const featured = PROJECTS.filter(p => p.featured).slice(0, 3);
 
-grid.innerHTML = featured.map(p => `
-  <div class="project-card">
-    <img src="${p.image}" alt="">
-    <h3><a href="${p.url}">${p.title}</a></h3>
-    <p>${p.description}</p>
-  </div>
-`).join("");
+featured.forEach(project => {
+  console.log("PROJECT DEBUG:", project.id, project.coverImage);
+  const coverUrl = resolveCover(project.coverImage);
+  const card = document.createElement("div");
+  card.className = "project-card";
+  card.style.setProperty("--project-cover", `url(${coverUrl})`);
+  console.log("CSS VAR SET (card):", card.style.getPropertyValue("--project-cover"));
+
+  card.innerHTML = `
+    <div class="project-card__image" aria-hidden="true"></div>
+    <h3><a href="${project.url}">${project.title}</a></h3>
+    <p>${project.description}</p>
+  `;
+  grid.appendChild(card);
+});
 </script>
 
 </body>
