@@ -220,6 +220,46 @@ ul li { margin-bottom: 6px; color: var(--text-secondary); }
   border: 0;
   border-top: 1px solid var(--border-subtle);
 }
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin-top: 10px;
+  list-style: none;
+  padding-left: 0;
+}
+
+.skill-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border-radius: 6px;
+}
+
+.skill-list img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  opacity: 0.85;
+}
+
+.section .item {
+  margin-bottom: 28px;
+}
+
+.section .item h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
 </style>
 </head>
 <body>
@@ -240,8 +280,11 @@ ul li { margin-bottom: 6px; color: var(--text-secondary); }
 <main class="site-main">
   <div class="page-intro">
     <h1>Resume</h1>
-    <p>This page provides a detailed view of my academic and professional experience. A concise one-page PDF version is available at the bottom of the page.</p>
-    <a class="pdf-link-top" href="BalajiPSridhar_Resume_04_06_24.pdf">
+    <p>
+      This page presents a consolidated overview of my academic training, research work, and professional experience. 
+      A concise one-page PDF version is available below.
+      </p>
+      <a class="pdf-link-top" href="/Resume/BalajiPSridhar_Resume_website.pdf">
       <svg class="pdf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M7 4.5h6l4.5 4.5v10.5a.5.5 0 0 1-.5.5H7.5a.5.5 0 0 1-.5-.5v-15a.5.5 0 0 1 .5-.5Z"></path>
         <path d="M13 4.5V9h4.5"></path>
@@ -254,62 +297,256 @@ ul li { margin-bottom: 6px; color: var(--text-secondary); }
 
   <section class="section">
     <h2>Education</h2>
+
     <div class="item">
       <h3>Carnegie Mellon University (GPA: 3.90/4) — Pittsburgh, PA</h3>
-      <div class="item-meta">Doctor of Philosophy, Computational Mechanics — August 2027</div>
-      <p>Coursework: Continuum Mechanics & Multiscale Modelling; Robotic Materials: Designs, Principles & Mechanics; Inelasticity</p>
+      <div class="item-meta">
+        Doctor of Philosophy and Master of Science, Computational Mechanics — 2022 to Present (MS awarded August 2024)
+      </div>
+      <ul>
+        <li>Finite Elements for Mechanics</li>
+        <li>Computational Analysis of Transport Phenomena</li>
+        <li>Numerical Methods in Engineering</li>
+        <li>Probability and Estimation Methods for Engineering Systems</li>
+        <li>Continuum Mechanics and Multiscale Modelling</li>
+        <li>Inelasticity</li>
+        <li>Robotic Materials: Designs, Principles & Mechanics</li>
+        <li>Mathematical Techniques for Chemical Engineering</li>
+        <li>Sensors, Circuits, and Data Interpretation and Management for Infrastructure Systems</li>
+        <li>Multiple Criteria Decision Making</li>
+        <li>Computability Theory</li>
+      </ul>
     </div>
-    <div class="item">
-      <h3>Carnegie Mellon University (GPA: 3.90/4) — Pittsburgh, PA</h3>
-      <div class="item-meta">Master of Science, Computational Mechanics — August 2024</div>
-      <p>Coursework: Finite Element Methods; Numerical Methods; Probability and Estimation Methods for Engineering Systems</p>
-    </div>
+
     <div class="item">
       <h3>College of Engineering Guindy (CEG), Anna University — Chennai, India</h3>
       <div class="item-meta">Bachelor of Engineering, Civil Engineering — April 2021</div>
-      <p>Coursework: Transform Techniques and Partial Differential Equations; Construction Materials and Techniques; Structural Analysis II</p>
+      <ul>
+        <li>Transform Techniques and Partial Differential Equations</li>
+        <li>Structural Analysis II</li>
+        <li>Construction Materials and Techniques</li>
+      </ul>
     </div>
   </section>
+
+
 
   <section class="section">
     <h2>Skills</h2>
+
     <div class="item">
       <h3>Programming Languages</h3>
-      <p>Python, C++, C, MATLAB, MicroPython</p>
+      <ul class="skill-list">
+        <li>
+          <img src="/assets/icons/python.svg" alt="" aria-hidden="true">
+          Python
+        </li>
+        <li>
+          <img src="/assets/icons/cpp.png" alt="" aria-hidden="true">
+          C++
+        </li>
+        <li>
+          <img src="/assets/icons/c.svg" alt="" aria-hidden="true">
+          C
+        </li>
+      </ul>
     </div>
+
     <div class="item">
-      <h3>Technical Tools</h3>
-      <p>FEniCS, Ansys, SolidWorks, AutoCAD, Blender, ArcGIS, Linux, Slurm, Command Line, CMake</p>
+      <h3>Scientific Computing and Engineering Tools</h3>
+      <ul class="skill-list">
+        <li>
+          <img src="/assets/icons/fenics.png" alt="" aria-hidden="true">
+          FEniCS
+        </li>
+        <li>
+          <img src="/assets/icons/ansys.svg" alt="" aria-hidden="true">
+          Ansys
+        </li>
+        <li>
+          <img src="/assets/icons/linux.svg" alt="" aria-hidden="true">
+          Linux
+        </li>
+        <li>
+          <img src="/assets/icons/Git.svg" alt="" aria-hidden="true">
+          Git
+        </li>
+        <li>Slurm</li>
+        <li>CMake</li>
+        <li>Command Line</li>
+      </ul>
     </div>
+
     <div class="item">
-      <h3>Documentation and Version Control</h3>
-      <p>LaTeX, MS Office, Adobe Suite, Git</p>
+      <h3>Supporting Tools and Environments</h3>
+      <ul class="skill-list">
+        <li>SolidWorks</li>
+        <li>AutoCAD</li>
+        <li>Blender</li>
+        <li>ArcGIS</li>
+        <li>LaTeX</li>
+        <li>MS Office</li>
+        <li>Adobe Suite</li>
+      </ul>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h2>Professional Experience</h2>
+
+    <div class="item">
+      <h3>
+        Journeyman Fellow — DEVCOM Army Research Laboratory (via ORAU)
+      </h3>
+      <div class="item-meta">Aberdeen, MD · Feb 2025 – Mar 2026</div>
+      <ul>
+        <li>Fellowship supporting full-time doctoral research in computational mechanics at Carnegie Mellon University.</li>
+        <li>Performed large-scale numerical simulations using Department of Defense high-performance computing resources.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>
+        Teaching Assistant — Carnegie Mellon University
+      </h3>
+      <div class="item-meta">
+        Probability and Estimation Methods for Infrastructure Systems · Aug 2023 – Dec 2023; Aug 2024 – Dec 2024
+      </div>
+      <ul>
+        <li>Supported graduate-level instruction through office hours, grading, and student mentoring.</li>
+        <li>Assisted with coursework focused on probabilistic modeling and estimation methods.</li>
+      </ul>
+    </div>
+
+
+    <div class="item">
+      <h3>
+        Grader — Carnegie Mellon University
+      </h3>
+      <div class="item-meta">
+        Solid Mechanics · Jan 2023 – May 2023
+      </div>
+      <ul>
+        <li>Evaluated coursework and examinations for undergraduate and graduate students in solid mechanics.</li>
+        <li>Provided structured feedback to support conceptual understanding and problem-solving skills.</li>
+      </ul>
+    </div>
+
+
+    <div class="item">
+      <h3>
+        Project Associate — Indian Institute of Technology Madras
+      </h3>
+      <div class="item-meta">Chennai, India · Oct 2021 – Mar 2022</div>
+      <ul>
+        <li>Contributed to experimental studies on corrosion of post-tensioned concrete systems.</li>
+        <li>Performed electrochemical testing and material characterization to assess durability and degradation mechanisms.</li>
+      </ul>
+    </div>
+
+    <div class="item">
+      <h3>
+        Site Safety Engineer Intern — Indian Oil Corporation Limited
+      </h3>
+      <div class="item-meta">Chennai, India · Feb 2021 - Apr 2021</div>
+      <p>
+        Supported on-site safety compliance and operational oversight in a building retrofitting project.
+      </p>
     </div>
   </section>
 
   <section class="section">
-    <h2>Projects and Publications</h2>
+    <h2>Projects</h2>
+
     <div class="item">
-      <h3><a href="projects/phase-field-thermomechanics-fracture.html">Phase-field Thermomechanics of Dynamic Fracture</a> — Jan 2023 – Present</h3>
-      <div class="item-meta">PhD Research</div>
-      <p>Developing coupled thermo-mechanical phase-field models for dynamic fracture, analyzing stability and numerical behavior in complex transient regimes.</p>
+      <h3>
+        <a href="/projects/phase-field-thermomechanics-fracture.html">
+          Phase-field Thermomechanics of Dynamic Fracture
+        </a>
+      </h3>
+
+      <div class="item-meta">Doctoral Research, Carnegie Mellon University</div>
+
+      <p>
+        Developing coupled thermo-mechanical phase-field models for dynamic fracture, incorporating heat transfer,
+        elastodynamics, and damage evolution. Implemented staggered and implicit time-integration schemes
+        to analyze stability, energy dissipation, and crack propagation under impact loading.
+      </p>
+
+      <p class="item-meta">
+        Computations performed using allocated high-performance computing resources on the PSC Bridges-2 supercomputing system.
+      </p>
+
+      <ul class="item-meta">
+        <li>
+            Recipient, Computing Allocation MCH240083 - High-performance computing grant on NSF HPC network system supporting large-scale thermomechanical fracture simulations.
+        </li>
+        <li>
+          Presenter and Session Co-Chair, Modeling and Simulation session,
+          <em>Fracture in Metals: Insights from Experiments and Modeling Across Length and Time Scales</em>,
+          Materials Science & Technology Conference (2024)
+        </li>
+        <li>Contributed presentation, SIAM Conference on Mathematical Aspects of Materials Science (2024)</li>
+        <li>Finalist, ASTM M.R. Mitchell Student Presentation Forum on Fatigue and Fracture Mechanics (2023)</li>
+      </ul>
     </div>
+
+
     <div class="item">
-      <h3><a href="projects/cornering-aerodynamics-fsae.html">Cornering Aerodynamics Analysis of a Formula SAE Race Car</a> — Oct 2022</h3>
-      <div class="item-meta">CFD Study</div>
-      <p>Compared straight-line vs cornering flow to assess downforce and drag trends; evaluated setup sensitivities and implications for race strategy.</p>
+      <h3>
+        <a href="/projects/cornering-aerodynamics-fsae.html">
+          Cornering Aerodynamics Analysis of a Formula SAE Race Car
+        </a>
+      </h3>
+      <div class="item-meta">CFD Project, Carnegie Mellon Racing</div>
+      <p>
+        Designed controlled simulation experiments to assess the sensitivity of aerodynamic performance to flow curvature, leveraging high-performance computing workflows to quantify efficiency tradeoffs under realistic operating conditions.
+      </p>
     </div>
+
     <div class="item">
-      <h3><a href="projects/seismic-hazard-analysis-chennai.html">Seismic Hazard Analysis: Chennai</a></h3>
-      <div class="item-meta">Machine Learning + Structural Risk</div>
-      <p>Applied support vector regression on building and soil data to flag structural risk patterns in urban settings.</p>
+      <h3 class="item-title">
+        <a href="/projects/seismic-hazard-analysis-chennai.html">
+          GIS-Based Seismic Hazard and Building Vulnerability Assessment for Chennai
+        </a>
+      </h3>
+
+      <div class="item-meta">
+        Undergraduate Research Project · Conference Publication
+      </div>
+
+      <p class="item-summary">
+        Abstracted physics-based structural simulations into regression models to enable
+        large-scale spatial screening of seismic response across an urban building inventory.
+      </p>
+
+      <div class="item-meta">
+        <a
+          href="https://link.springer.com/chapter/10.1007/978-981-16-8667-2_35"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Conference paper (DOI: 10.1007/978-981-16-8667-2_35)
+        </a>
+        · Best Paper Presentation Award, ICACE 2021
+      </div>
     </div>
+
     <div class="item">
-      <h3><a href="projects/smart-chess-board.html">Smart Chess Board</a></h3>
-      <div class="item-meta">Embedded Systems</div>
-      <p>Built load cell–based sensing with signal processing for move detection and board state tracking.</p>
+      <h3>
+        <a href="/projects/smart-chess-board.html">
+          Smart Chess Board
+        </a>
+      </h3>
+      <div class="item-meta">Embedded Systems · Signal Processing</div>
+      <p>
+        Implemented an embedded signal-processing pipeline for calibrated load-cell data, using averaging and threshold detection to localize discrete object placement from distributed force measurements with ~90% accuracy.
+      </p>
     </div>
+
   </section>
+
 
   <hr class="divider">
   <p class="pdf-link-top" style="margin-top:16px;">

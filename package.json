@@ -1,0 +1,11 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "export:resume": "node scripts/export-resume-pdf.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}
