@@ -21,7 +21,7 @@
     --muted: #b3b3b3;
     --accent: #94a3b8;
     --panel: rgba(255, 255, 255, 0.04);
-    --border: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.12);
     --pattern1: rgba(255,255,255,0.08);
     --pattern2: rgba(255,255,255,0.06);
   }
@@ -76,21 +76,47 @@
   }
 
   main {
-    width: min(900px, 100%);
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-    line-height: 1.6;
+    width: min(960px, 100%);
+    line-height: 1.7;
   }
 
-  h1 { font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-  h2 { font-size: 18px; letter-spacing: 0.04em; margin: 20px 0 8px; }
+  h1 {
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    margin: 20px 0 8px;
+  }
   p { margin-bottom: 10px; }
   ul { margin-left: 18px; margin-bottom: 12px; }
   ul li { margin-bottom: 6px; }
+  .muted { color: var(--muted); }
   section { margin-bottom: 18px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  thead th { background: rgba(255,255,255,0.06); }
+
+  figure { border: 1px dashed var(--border); padding: 10px; margin: 10px 0 14px; text-align: center; }
+  figcaption { margin-top: 6px; color: var(--muted); font-size: 14px; }
+  .mesh-figure {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.06);
+  }
+  .mesh-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
 
   a { color: var(--accent); }
 
@@ -122,19 +148,6 @@
   }
   .toc h2 { margin: 0 0 8px; }
   .toc ol { margin-left: 18px; }
-
-  .pill {
-    display: inline-block;
-    padding: 6px 12px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text);
-    opacity: 0.9;
-    margin-bottom: 8px;
-  }
 
   .project-hero {
     position: relative;
@@ -246,9 +259,9 @@
 </style>
 </head>
 <body>
-  <a class="home-link" href="/index.html">Balaji Pulipakkam Sridhar</a>
+  <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-    <main class="project-page" style="--project-cover: url('/assets/scene1/ezgif-frame-003.jpg');">
+  <main class="project-page" data-project-id="smart-chess-board" style="--project-cover: url('/assets/scene1/ezgif-frame-003.jpg');">
     <nav class="top-nav" aria-label="Page links">
       <a href="/projects.html">&lt; Back to Projects</a>
     </nav>
@@ -264,17 +277,16 @@
 
         <div class="project-hero__meta">
           <div class="project-hero__meta-item">
-            <span class="project-hero__meta-label">Project type</span>
-            <span class="project-hero__meta-value">Course project</span>
+            <span class="project-hero__meta-label">Context</span>
+            <span class="project-hero__meta-value">Embedded systems course project focused on sensing and signal processing</span>
           </div>
           <div class="project-hero__meta-item">
             <span class="project-hero__meta-label">Role</span>
-            <span class="project-hero__meta-value">Team member</span>
+            <span class="project-hero__meta-value">Load-cell integration, firmware bring-up, and data processing pipeline</span>
           </div>
         </div>
       </div>
     </header>
-    <span class="pill">Coming soon</span>
 
     <nav class="toc" aria-label="Contents">
       <h2>Contents</h2>
@@ -291,37 +303,53 @@
 
     <section id="context">
       <h2>Context</h2>
-      <p>Content coming soon.</p>
+      <p>This project explored whether a grid of load cells beneath a chessboard could reliably detect piece positions without camera vision. The focus was on low-cost sensing, embedded processing, and firmware that could stream consistent board state updates.</p>
+      <p>The work served as a hardware-software integration exercise, emphasizing sensor selection, mechanical packaging, and digital filtering to clean up noisy weight signals.</p>
     </section>
 
     <section id="approach">
       <h2>Approach</h2>
-      <p>Content coming soon.</p>
+      <p>The board used four load cells arranged in a wheatstone configuration per square to capture force distribution, feeding an HX711 ADC into a microcontroller for sampling and serial output. Firmware averaged multiple reads per square and applied thresholding to map summed forces to occupancy states.</p>
+      <p>Bench tests evaluated detection accuracy across piece types and positions, iterating on thresholds and debounce timing to minimize false positives from adjacent squares.</p>
     </section>
 
     <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
-      <p>Details will be added soon.</p>
+      <ul>
+        <li>HX711 ADC modules and load cells mounted under a custom chessboard frame</li>
+        <li>Microcontroller firmware in C for sampling, averaging, and threshold classification</li>
+        <li>Python serial interface for logging and quick visualization during calibration</li>
+        <li>3D-printed mounts and foam isolation to reduce cross-talk between squares</li>
+      </ul>
     </section>
 
     <section id="key-results">
       <h2>Key Results</h2>
-      <p>Results will be added with the full documentation.</p>
+      <p>After calibration, the board consistently distinguished occupied from unoccupied squares for standard pieces with minimal cross-talk, though heavier pieces required higher thresholds that slowed response slightly.</p>
+      <p>Latency from contact to reliable detection was typically under 300 ms when averaging 10–15 samples, balancing responsiveness against noise suppression.</p>
     </section>
 
     <section id="analysis-insights">
       <h2>Analysis &amp; Insights</h2>
-      <p>Analysis will be included when results are ready.</p>
+      <p>Load-cell arrays can work for board-state detection if mechanical isolation and per-square calibration are prioritized; most noise issues traced back to flex in the board rather than electronics. Threshold tuning benefited from grouping pieces by weight instead of a single global value.</p>
+      <p>Future iterations would explore per-square auto-zeroing and dynamic gain adjustments to maintain sensitivity as the board flexes with repeated use.</p>
     </section>
 
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
-      <p>Competencies summary coming soon.</p>
+      <ul>
+        <li>Embedded sensing design with load cells and ADC integration</li>
+        <li>Firmware development for low-latency signal processing and classification</li>
+        <li>Iterative calibration and testing to tune thresholds and debounce behavior</li>
+        <li>Mechanical packaging to reduce sensor cross-talk in dense arrays</li>
+      </ul>
     </section>
 
     <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
-      <p>Artifacts will be linked after publication.</p>
+      <ul>
+        <li>Hardware build notes and calibration logs (available on request)</li>
+      </ul>
     </section>
   </main>
 
@@ -337,6 +365,27 @@
     rootEl.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
   });
+</script>
+<script type="module">
+import { PROJECTS } from "../assets/projects.js?v=cover-debug-2";
+
+const page = document.querySelector(".project-page");
+const resolveCover = (path) => {
+  if (!path) return "";
+  if (window.location.protocol === "file:") {
+    return new URL(path, window.location.href).toString();
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, window.location.origin).toString();
+};
+const project = PROJECTS.find(p => p.id === page?.dataset.projectId);
+
+if (page && project?.coverImage) {
+  const coverUrl = resolveCover(project.coverImage);
+  page.style.setProperty("--project-cover", `url('${coverUrl}')`);
+  console.log("PROJECT DEBUG:", project.id, project.coverImage);
+  console.log("CSS VAR SET (page):", page.style.getPropertyValue("--project-cover"));
+}
 </script>
 </body>
 </html>

@@ -21,7 +21,7 @@
     --muted: #b3b3b3;
     --accent: #94a3b8;
     --panel: rgba(255, 255, 255, 0.04);
-    --border: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.12);
     --pattern1: rgba(255,255,255,0.08);
     --pattern2: rgba(255,255,255,0.06);
   }
@@ -76,21 +76,47 @@
   }
 
   main {
-    width: min(900px, 100%);
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-    line-height: 1.6;
+    width: min(960px, 100%);
+    line-height: 1.7;
   }
 
-  h1 { font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-  h2 { font-size: 18px; letter-spacing: 0.04em; margin: 20px 0 8px; }
+  h1 {
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    margin: 20px 0 8px;
+  }
   p { margin-bottom: 10px; }
   ul { margin-left: 18px; margin-bottom: 12px; }
   ul li { margin-bottom: 6px; }
+  .muted { color: var(--muted); }
   section { margin-bottom: 18px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  thead th { background: rgba(255,255,255,0.06); }
+
+  figure { border: 1px dashed var(--border); padding: 10px; margin: 10px 0 14px; text-align: center; }
+  figcaption { margin-top: 6px; color: var(--muted); font-size: 14px; }
+  .mesh-figure {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.06);
+  }
+  .mesh-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
 
   a { color: var(--accent); }
 
@@ -122,19 +148,6 @@
   }
   .toc h2 { margin: 0 0 8px; }
   .toc ol { margin-left: 18px; }
-
-  .pill {
-    display: inline-block;
-    padding: 6px 12px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text);
-    opacity: 0.9;
-    margin-bottom: 8px;
-  }
 
   .project-hero {
     position: relative;
@@ -248,11 +261,11 @@
 <body>
   <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <main class="project-page" data-project-id="phase-field-thermomechanics-fracture" style="--project-cover: url('../assets/phase-field/cover_image.jpg');">
+  <main class="project-page" data-project-id="phase-field-thermomechanics-fracture" style="--project-cover: url('/assets/phase-field/cover_image.jpg');">
     <nav class="top-nav" aria-label="Page links">
       <a href="/projects.html">&lt; Back to Projects</a>
     </nav>
-        <header class="project-hero" aria-label="Project overview">
+    <header class="project-hero" aria-label="Project overview">
       <div class="project-hero__media"></div>
       <div class="project-hero__overlay" aria-hidden="true"></div>
 
@@ -263,12 +276,12 @@
 
         <div class="project-hero__meta">
           <div class="project-hero__meta-item">
-            <span class="project-hero__meta-label">Project type</span>
-            <span class="project-hero__meta-value">Doctoral Research</span>
+            <span class="project-hero__meta-label">Context</span>
+            <span class="project-hero__meta-value">Doctoral research on coupled thermomechanical fracture modeling</span>
           </div>
           <div class="project-hero__meta-item">
             <span class="project-hero__meta-label">Role</span>
-            <span class="project-hero__meta-value">Lead Researcher and Developer</span>
+            <span class="project-hero__meta-value">Lead researcher and solver developer</span>
           </div>
         </div>
       </div>
@@ -287,6 +300,7 @@
         <li><a href="#artifacts-links">Artifacts &amp; Links</a></li>
       </ol>
     </nav>
+
     <section id="recognition-dissemination">
       <h2>Recognition &amp; Dissemination</h2>
 
@@ -297,7 +311,7 @@
 
       <ul>
         <li>
-          <strong>Recipient, Computing Allocation</strong><br>
+          <strong>Recipient, Competitive Computing Allocation</strong><br>
           <em>MCH240083: Thermomechanics of Dynamic Fracture</em><br>
           Awarded high-performance computing access on the
           PSC Bridges-2 supercomputing system to support large-scale thermomechanical fracture simulations
@@ -324,6 +338,7 @@
         </li>
       </ul>
     </section>
+
 
     <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
@@ -373,6 +388,7 @@
       </ul>
     </section>
 
+
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
 
@@ -408,6 +424,7 @@
         </li>
       </ul>
     </section>
+
 
     <section id="context">
       <h2>Context</h2>
