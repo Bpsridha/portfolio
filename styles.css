@@ -11,3 +11,20 @@
     rgba(0, 0, 0, 0.8) 100%
   );
 }
+
+.mesh-figure--compact img {
+  max-width: 55%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.mesh-figure--compact figure {
+  margin: 1.25rem auto;
+}
+
+.mesh-figure--compact figcaption {
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  text-align: center;
+}

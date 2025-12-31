@@ -28,9 +28,9 @@ export const PROJECTS = [
   {
     id: "smart-chess-board",
     title: "Smart Chess Board",
-    description: "Embedded sensing with load cells and signal processing for piece detection.",
+    description: "Real-time load localization using distributed load cells and embedded signal processing.",
     url: "projects/smart-chess-board.html",
-    coverImage: "assets/scene1/ezgif-frame-003.jpg",
+    coverImage: "/assets/chess-board/chess_board.jpeg",
     featured: false
   }
 ];

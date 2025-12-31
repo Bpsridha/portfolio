@@ -261,32 +261,36 @@
 <body>
   <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <main class="project-page" data-project-id="smart-chess-board" style="--project-cover: url('/assets/scene1/ezgif-frame-003.jpg');">
+  <main class="project-page" data-project-id="smart-chess-board" style="--project-cover: url('/assets/chess-board/chess_board.jpeg');">
     <nav class="top-nav" aria-label="Page links">
       <a href="/projects.html">&lt; Back to Projects</a>
     </nav>
 
-    <header class="project-hero" aria-label="Project overview">
-      <div class="project-hero__media"></div>
-      <div class="project-hero__overlay" aria-hidden="true"></div>
+    <div class="project-hero__content">
+      <p class="project-hero__kicker">Carnegie Mellon University | 2022</p>
 
-      <div class="project-hero__content">
-        <p class="project-hero__kicker">Carnegie Mellon University | 2022</p>
-        <h1 class="project-hero__title">Smart Chess Board</h1>
-        <p class="project-hero__subtitle">Embedded sensing with load cells and signal processing for chess piece detection.</p>
+      <h1 class="project-hero__title">Smart Chess Board</h1>
 
-        <div class="project-hero__meta">
-          <div class="project-hero__meta-item">
-            <span class="project-hero__meta-label">Context</span>
-            <span class="project-hero__meta-value">Embedded systems course project focused on sensing and signal processing</span>
-          </div>
-          <div class="project-hero__meta-item">
-            <span class="project-hero__meta-label">Role</span>
-            <span class="project-hero__meta-value">Load-cell integration, firmware bring-up, and data processing pipeline</span>
-          </div>
+      <p class="project-hero__subtitle">
+        Real-time load localization using distributed load cells and embedded signal processing.
+      </p>
+
+      <div class="project-hero__meta">
+        <div class="project-hero__meta-item">
+          <span class="project-hero__meta-label">Context</span>
+          <span class="project-hero__meta-value">
+            Graduate embedded systems project on sensing, calibration, and physical inference from noisy measurements
+          </span>
+        </div>
+
+        <div class="project-hero__meta-item">
+          <span class="project-hero__meta-label">Role</span>
+          <span class="project-hero__meta-value">
+            Project lead for system concept, load-distribution modeling, firmware architecture, and sensor integration
+          </span>
         </div>
       </div>
-    </header>
+    </div>
 
     <nav class="toc" aria-label="Contents">
       <h2>Contents</h2>
@@ -303,53 +307,204 @@
 
     <section id="context">
       <h2>Context</h2>
-      <p>This project explored whether a grid of load cells beneath a chessboard could reliably detect piece positions without camera vision. The focus was on low-cost sensing, embedded processing, and firmware that could stream consistent board state updates.</p>
-      <p>The work served as a hardware-software integration exercise, emphasizing sensor selection, mechanical packaging, and digital filtering to clean up noisy weight signals.</p>
+
+      <p>
+        This project investigated whether a small number of distributed load cells could be used to infer
+        both the magnitude and location of loads on a planar surface, without relying on vision-based sensing.
+        A chessboard was selected as a constrained, interpretable test case where discrete object placement
+        and movement could be evaluated quantitatively.
+      </p>
+
+      <p>
+        The work was completed as part of
+        <em>12-778: Sensors, Circuits, and Data Interpretation for Infrastructure Systems</em>
+        at Carnegie Mellon University (Fall 2022). The course emphasized end-to-end sensing systems, spanning
+        physical measurement, signal conditioning, calibration, uncertainty, and embedded data processing.
+      </p>
+
+      <p>
+        Beyond the chessboard demonstration, the broader motivation was to explore load localization as a
+        general sensing primitive, applicable to assistive interfaces and infrastructure monitoring scenarios
+        where low-cost hardware and robust inference from noisy measurements are required.
+      </p>
     </section>
+
 
     <section id="approach">
       <h2>Approach</h2>
-      <p>The board used four load cells arranged in a wheatstone configuration per square to capture force distribution, feeding an HX711 ADC into a microcontroller for sampling and serial output. Firmware averaged multiple reads per square and applied thresholding to map summed forces to occupancy states.</p>
-      <p>Bench tests evaluated detection accuracy across piece types and positions, iterating on thresholds and debounce timing to minimize false positives from adjacent squares.</p>
+
+      <p>
+        The system models the chessboard as a rigid plate supported at four corners, with one load cell at each
+        support measuring the reaction force. Rather than sensing individual squares directly, the approach
+        infers object location by analyzing how a point load redistributes across the four supports.
+      </p>
+
+      <p>
+        This reduces the localization problem to two coupled one-dimensional calculations along the board axes.
+        By decomposing the total measured load into orthogonal components, the position of a weight change can
+        be computed analytically from the relative changes observed at each load cell.
+      </p>
+
+      <p>
+        Embedded firmware on a Raspberry Pi Pico W continuously sampled the four load cells through HX711
+        amplifiers, applied averaging to suppress noise, and detected load changes exceeding a calibrated
+        threshold. When a change was detected, the firmware computed the corresponding coordinates and mapped
+        them to a discrete 8×8 grid matching the chessboard layout.
+      </p>
+
+      <p>
+        This model-driven approach allowed position inference without dense sensor arrays, cameras, or external
+        tracking, relying instead on calibration, signal conditioning, and mechanical reasoning.
+      </p>
     </section>
+
 
     <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
+
       <ul>
-        <li>HX711 ADC modules and load cells mounted under a custom chessboard frame</li>
-        <li>Microcontroller firmware in C for sampling, averaging, and threshold classification</li>
-        <li>Python serial interface for logging and quick visualization during calibration</li>
-        <li>3D-printed mounts and foam isolation to reduce cross-talk between squares</li>
+        <li>
+          Four 5 kg load cells mounted at the corners of a custom-built wooden frame, supporting a rigid
+          22×22 inch chessboard surface.
+        </li>
+        <li>
+          HX711 24-bit ADC modules used for signal amplification and digitization, providing sufficient
+          resolution for detecting small weight changes from individual chess pieces.
+        </li>
+        <li>
+          Embedded firmware on a Raspberry Pi Pico W responsible for synchronized sampling, moving-average
+          filtering, threshold detection, and coordinate computation based on calibrated load distributions.
+        </li>
+        <li>
+          Linear calibration routines implemented per load cell using known weights, with tare compensation
+          to remove the board and resting piece mass from subsequent measurements.
+        </li>
+        <li>
+          A lightweight Python serial interface used during development to stream data, validate calibration
+          curves, and verify localization behavior during bench testing.
+        </li>
       </ul>
+      
+        <div class="mesh-figure">
+      <figure>
+            <img
+              src="/assets/chess-board/circuit-diagram.png"
+              alt="Circuit diagram showing the connections between the load cells, HX711 amplifiers, and Raspberry Pi Pico W."
+            />
+            <figcaption>
+              Circuit diagram showing the connections between the load cells, HX711 amplifiers, and Raspberry Pi Pico W.
+            </figcaption>
+          </figure>
+      </div>
     </section>
+
 
     <section id="key-results">
       <h2>Key Results</h2>
-      <p>After calibration, the board consistently distinguished occupied from unoccupied squares for standard pieces with minimal cross-talk, though heavier pieces required higher thresholds that slowed response slightly.</p>
-      <p>Latency from contact to reliable detection was typically under 300 ms when averaging 10–15 samples, balancing responsiveness against noise suppression.</p>
+
+      <p>
+        Following per-sensor calibration and tare compensation, the system correctly localized single-piece
+        placement and removal events across the board with approximately 90 percent accuracy over 20 controlled
+        trials spanning multiple grid locations.
+      </p>
+
+      <p>
+        Reliable detection was achieved using a 10 gram threshold and short-window averaging, allowing the
+        system to suppress sensor noise while maintaining responsive updates during piece movement.
+      </p>
+
+      <p>
+        The results validated that sparse corner sensing, combined with an analytical load-distribution model,
+        is sufficient for discrete position inference without dense sensor arrays or vision-based tracking.
+      </p>
+      <div class="mesh-figure mesh-figure--compact">
+      <figure>
+            <img
+              src="/assets/chess-board/Table_check.png"
+              alt="validation results showing actual vs. inferred positions for piece placements on the chess board."
+            />
+            <figcaption>
+              Validation results showing actual vs. inferred positions for piece placements on the chess board.
+            </figcaption>
+          </figure>
+      </div>
     </section>
 
     <section id="analysis-insights">
       <h2>Analysis &amp; Insights</h2>
-      <p>Load-cell arrays can work for board-state detection if mechanical isolation and per-square calibration are prioritized; most noise issues traced back to flex in the board rather than electronics. Threshold tuning benefited from grouping pieces by weight instead of a single global value.</p>
-      <p>Future iterations would explore per-square auto-zeroing and dynamic gain adjustments to maintain sensitivity as the board flexes with repeated use.</p>
+
+      <p>
+        The dominant source of localization error was not sensor resolution but mechanical and modeling
+        assumptions. Small deviations from ideal rigid-body behavior, including uneven support contact and
+        slight board compliance, produced asymmetric load redistribution that affected position estimates
+        near grid boundaries.
+      </p>
+
+      <p>
+        Temperature drift and long-term sensor bias were mitigated through frequent taring and short-window
+        averaging, but these effects highlighted the limits of purely static calibration in low-cost sensing
+        systems. The system performed best when inference relied on relative load changes rather than absolute
+        weight values.
+      </p>
+
+      <p>
+        From a system-design perspective, the project demonstrated that analytical modeling can meaningfully
+        reduce hardware complexity. By leveraging load-distribution physics, four sensors were sufficient to
+        solve a problem that would otherwise require dense instrumentation or external perception.
+      </p>
     </section>
+
 
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
+
       <ul>
-        <li>Embedded sensing design with load cells and ADC integration</li>
-        <li>Firmware development for low-latency signal processing and classification</li>
-        <li>Iterative calibration and testing to tune thresholds and debounce behavior</li>
-        <li>Mechanical packaging to reduce sensor cross-talk in dense arrays</li>
+        <li>
+          Ability to translate physical intuition into analytical models and deploy them in embedded systems,
+          a skill directly applicable to sensing, controls, and inference problems.
+        </li>
+        <li>
+          Experience leading end-to-end technical work, from problem formulation and modeling through firmware
+          implementation and experimental validation.
+        </li>
+        <li>
+          Comfort operating at the boundary between theory and implementation, including calibration,
+          uncertainty, and robustness considerations.
+        </li>
+        <li>
+          A bias toward reducing system complexity through modeling rather than adding hardware, reflecting
+          disciplined engineering judgment.
+        </li>
+        <li>
+          Transferable foundations for work in infrastructure monitoring, physical analytics, and
+          quantitatively driven decision-making roles that require reasoning from noisy measurements.
+        </li>
       </ul>
     </section>
 
     <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
+
       <ul>
-        <li>Hardware build notes and calibration logs (available on request)</li>
+        <li>
+          <a href="https://v-srirama.github.io/12778-Project/" target="_blank" rel="noopener">
+            Full group project website
+          </a>
+          <span class="muted"> — extended methodology, figures, and documentation</span>
+        </li>
+        <li>
+          <a href="https://github.com/v-srirama/12778-Project/blob/main/final_code.py" target="_blank" rel="noopener">
+            Firmware and data acquisition code
+          </a>
+        </li>
       </ul>
+      <p class="muted">
+        This project was completed as a four-person team as part of 12-778 under the supervision of Prof. Mario Bergés. My contributions focused on the system concept, load-distribution modeling, and embedded firmware development, working alongside teammates who contributed to testing, documentation, and supporting analysis.
+      </p>
+      <p class="muted">
+        Team members: Ishwrya Achuthan Geetha, Sakar Adhikari, Sri Ramana Saketh Vasanthawada.
+      </p>
+
     </section>
   </main>
 
@@ -389,4 +544,3 @@ if (page && project?.coverImage) {
 </script>
 </body>
 </html>
-
