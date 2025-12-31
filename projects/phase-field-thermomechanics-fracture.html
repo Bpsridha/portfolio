@@ -248,7 +248,7 @@
 <body>
   <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <main class="project-page" style="--project-cover: url('/assets/scene1/ezgif-frame-001.jpg');">
+  <main class="project-page" data-project-id="phase-field-thermomechanics-fracture" style="--project-cover: url('../assets/phase-field/cover_image.jpg');">
     <nav class="top-nav" aria-label="Page links">
       <a href="/projects.html">&lt; Back to Projects</a>
     </nav>
@@ -259,64 +259,232 @@
       <div class="project-hero__content">
         <p class="project-hero__kicker">Carnegie Mellon University | 2023-present</p>
         <h1 class="project-hero__title">Phase-field Thermomechanics of Dynamic Fracture</h1>
-        <p class="project-hero__subtitle">Thermomechanical phase-field modeling for crack initiation and growth under dynamic loading.</p>
+        <p class="project-hero__subtitle">Thermomechanical phase-field modeling for fracture growth under dynamic loading.</p>
 
         <div class="project-hero__meta">
           <div class="project-hero__meta-item">
             <span class="project-hero__meta-label">Project type</span>
-            <span class="project-hero__meta-value">Research project</span>
+            <span class="project-hero__meta-value">Doctoral Research</span>
           </div>
           <div class="project-hero__meta-item">
             <span class="project-hero__meta-label">Role</span>
-            <span class="project-hero__meta-value">Researcher</span>
+            <span class="project-hero__meta-value">Lead Researcher and Developer</span>
           </div>
         </div>
       </div>
     </header>
-    <span class="pill">Coming soon</span>
 
     <nav class="toc" aria-label="Contents">
       <h2>Contents</h2>
       <ol>
+        <li><a href="#recognition-dissemination">Recognition &amp; Dissemination</a></li>
+        <li><a href="#implementation-tools">Implementation &amp; Tools</a></li>
+        <li><a href="#what-this-demonstrates">What This Demonstrates</a></li>
         <li><a href="#context">Context</a></li>
         <li><a href="#approach">Approach</a></li>
-        <li><a href="#implementation-tools">Implementation &amp; Tools</a></li>
         <li><a href="#key-results">Key Results</a></li>
         <li><a href="#analysis-insights">Analysis &amp; Insights</a></li>
-        <li><a href="#what-this-demonstrates">What This Demonstrates</a></li>
         <li><a href="#artifacts-links">Artifacts &amp; Links</a></li>
       </ol>
     </nav>
+    <section id="recognition-dissemination">
+      <h2>Recognition &amp; Dissemination</h2>
 
-    <section id="context">
-      <h2>Context</h2>
-      <p>Content coming soon.</p>
-    </section>
+      <p>
+        This work has been supported, reviewed, and presented in peer-facing academic settings
+        spanning fracture mechanics, computational materials science, and numerical modeling.
+      </p>
 
-    <section id="approach">
-      <h2>Approach</h2>
-      <p>Content coming soon.</p>
+      <ul>
+        <li>
+          <strong>Recipient, Computing Allocation</strong><br>
+          <em>MCH240083: Thermomechanics of Dynamic Fracture</em><br>
+          Awarded high-performance computing access on the
+          PSC Bridges-2 supercomputing system to support large-scale thermomechanical fracture simulations
+        </li>
+
+        <li>
+          <strong>Presenter and Session Co-Chair</strong>, Modeling and Simulation session<br>
+          <em>
+            Fracture in Metals: Insights from Experiments and Modeling Across Length and Time Scales
+          </em><br>
+          symposium at Materials Science & Technology Conference, October 2024
+        </li>
+
+        <li>
+          <strong>Contributed Presentation</strong><br>
+          <em>SIAM Conference on Mathematical Aspects of Materials Science</em>, May 2024
+        </li>
+
+        <li>
+          <strong>Finalist</strong><br>
+          <em>
+            ASTM M.R. Mitchell Student Presentation Forum on Fatigue and Fracture Mechanics
+          </em>, November 2023
+        </li>
+      </ul>
     </section>
 
     <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
-      <p>Details will be added soon.</p>
-    </section>
 
-    <section id="key-results">
-      <h2>Key Results</h2>
-      <p>Results will be published with the full write-up.</p>
-    </section>
+      <ul>
+        <li>
+          <strong>Numerical Methods:</strong>
+          Finite element methods, phase-field fracture modeling, coupled thermomechanical formulations
+        </li>
 
-    <section id="analysis-insights">
-      <h2>Analysis &amp; Insights</h2>
-      <p>Analysis will be added once results are finalized.</p>
+        <li>
+          <strong>Finite Element Framework:</strong>
+          FEniCS for variational formulation,
+          automatic differentiation, and solver development
+        </li>
+
+        <li>
+          <strong>Time Integration:</strong>
+          Implicit, semi-implicit, and staggered solution schemes for dynamic problems
+        </li>
+
+        <li>
+          <strong>Scientific Computing:</strong>
+          Python-based scientific computing and numerical experimentation
+        </li>
+
+        <li>
+          <strong>Solver Architecture:</strong>
+          Modular solver design supporting monolithic and staggered coupling strategies
+        </li>
+
+        <li>
+          <strong>Verification &amp; Validation:</strong>
+          Manufactured solutions and benchmark-driven verification
+        </li>
+
+        <li>
+          <strong>High-Performance Computing:</strong>
+          Distributed-memory execution and large-scale parameter studies
+          on allocated HPC systems
+        </li>
+
+        <li>
+          <strong>Tooling &amp; Workflow:</strong>
+          Version control, reproducible simulation pipelines, and structured result logging
+        </li>
+      </ul>
     </section>
 
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
-      <p>Competencies summary coming soon.</p>
+
+      <ul>
+        <li>
+          Ability to design and implement custom numerical solvers for coupled,
+          multiphysics problems rather than relying on black-box tools
+        </li>
+
+        <li>
+          Strong command of variational methods, time integration strategies,
+          and stability considerations in dynamic simulations
+        </li>
+
+        <li>
+          Experience managing computationally intensive research workflows,
+          including scaling studies on high-performance computing systems
+        </li>
+
+        <li>
+          Discipline in verification and validation through manufactured solutions
+          and benchmark-driven testing
+        </li>
+
+        <li>
+          Capacity to communicate complex technical work to expert audiences,
+          including conference presentations and session leadership
+        </li>
+
+        <li>
+          Research judgment in balancing model fidelity, numerical robustness,
+          and computational cost
+        </li>
+      </ul>
     </section>
+
+    <section id="context">
+      <h2>Context</h2>
+
+      <p>
+        This section will be expanded following formal publication to outline the physical and modeling context of the problem.
+      </p>
+
+      <p>
+        The project addresses fundamental questions in dynamic fracture and
+        thermomechanical coupling, with an emphasis on numerical modeling and
+        large-scale computation.
+      </p>
+
+      <p>
+        If you are interested in the technical details, methodology, or potential
+        applications, feel free to reach out directly.
+      </p>
+    </section>
+
+
+    <section id="approach">
+      <h2>Approach</h2>
+
+      <p>
+        A detailed description of the numerical formulation and solution strategy will be provided following publication.
+      </p>
+
+      <p>
+        The work combines continuum thermomechanics, phase-field representations
+        of fracture, and time-dependent numerical solution strategies, with a focus
+        on robustness and physical consistency.
+      </p>
+
+      <p>
+        For discussion of the technical approach, solver design decisions, or
+        potential extensions, please reach out directly.
+      </p>
+    </section>
+
+
+    <section id="key-results">
+      <h2>Key Results</h2>
+
+      <p>
+        Quantitative results from this work are under review and will be released following formal publication.
+      </p>
+
+      <p>
+        The study yields quantitative insights into dynamic fracture behavior under
+        coupled thermomechanical loading, supported by verified numerical simulations.
+      </p>
+
+      <p>
+        Additional details are available upon request.
+      </p>
+    </section>
+
+
+    <section id="analysis-insights">
+      <h2>Analysis &amp; Insights</h2>
+
+      <p>
+        Interpretation and synthesis of the numerical results will be documented following publication.
+      </p>
+
+      <p>
+        The analysis focuses on the interplay between thermomechanical coupling,
+        fracture evolution, and numerical stability in dynamic settings.
+      </p>
+
+      <p>
+        For technical discussion or context on the insights derived from this work,
+        please reach out directly.
+      </p>
+    </section>
+
 
     <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
@@ -336,6 +504,27 @@
     rootEl.setAttribute("data-theme", next);
     localStorage.setItem("theme", next);
   });
+</script>
+<script type="module">
+import { PROJECTS } from "../assets/projects.js?v=cover-debug-2";
+
+const page = document.querySelector(".project-page");
+const resolveCover = (path) => {
+  if (!path) return "";
+  if (window.location.protocol === "file:") {
+    return new URL(path, window.location.href).toString();
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, window.location.origin).toString();
+};
+const project = PROJECTS.find(p => p.id === page?.dataset.projectId);
+
+if (page && project?.coverImage) {
+  const coverUrl = resolveCover(project.coverImage);
+  page.style.setProperty("--project-cover", `url('${coverUrl}')`);
+  console.log("PROJECT DEBUG:", project.id, project.coverImage);
+  console.log("CSS VAR SET (page):", page.style.getPropertyValue("--project-cover"));
+}
 </script>
 </body>
 </html>

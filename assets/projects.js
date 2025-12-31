@@ -4,9 +4,9 @@ export const PROJECTS = [
   {
     id: "phase-field-thermomechanics-fracture",
     title: "Phase-field Thermomechanics of Dynamic Fracture",
-    description: "Coupled heat transfer and fracture via phase-field models.",
+    description: "Thermomechanical phase-field modeling for fracture growth under dynamic loading.",
     url: "projects/phase-field-thermomechanics-fracture.html",
-    coverImage: "assets/scene1/ezgif-frame-001.jpg",
+    coverImage: "assets/phase-field/cover_image.jpg",
     featured: true
   },
   {

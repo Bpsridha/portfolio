@@ -246,6 +246,8 @@
     color: var(--hero-text-secondary);
   }
 
+  .project-award { margin-bottom: 10px; }
+
   @media (max-width: 820px) {
     .project-hero {
       min-height: 420px;
@@ -415,11 +417,12 @@
 
     <section id="results">
       <h2>Results</h2>
+      <p class="muted"> Results are intended for relative screening and comparison, not building-specific performance assessment. </p>
 
       <p>
-        The results examine how seismic base shear demand varies with building height and geometry,
-        and how effectively regression-based predictions reproduce modeled structural response at
-        city scale. All results are interpreted as relative indicators suitable for screening.
+        The results examine how seismic base shear varies with building height and geometry,
+        and how effectively regression-based models reproduce structural response at city scale.
+        All results are interpreted as relative indicators suitable for screening.
       </p>
 
       <div class="results-block">
@@ -440,7 +443,7 @@
           five-storey buildings (right).
         </p>
 
-        <figure class="mesh-figure">
+        <div class="mesh-figure">
           <figure>
             <img
               src="/assets/seismic_project/518920_1_En_35_Fig1_HTML.webp"
@@ -460,7 +463,7 @@
               Comparative maps of predicted and reference design base shear for one-storey (left) and five-storey (right) buildings.
             </figcaption>
           </figure>
-        </figure>
+        </div>
 
         <ul>
           <li>
