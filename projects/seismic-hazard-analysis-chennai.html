@@ -21,7 +21,7 @@
     --muted: #b3b3b3;
     --accent: #94a3b8;
     --panel: rgba(255, 255, 255, 0.04);
-    --border: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.12);
     --pattern1: rgba(255,255,255,0.08);
     --pattern2: rgba(255,255,255,0.06);
   }
@@ -76,21 +76,50 @@
   }
 
   main {
-    width: min(900px, 100%);
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-    line-height: 1.6;
+    width: min(960px, 100%);
+    line-height: 1.7;
   }
 
-  h1 { font-size: 28px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
-  h2 { font-size: 18px; letter-spacing: 0.04em; margin: 20px 0 8px; }
+  h1 {
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    margin: 20px 0 8px;
+  }
+
   p { margin-bottom: 10px; }
   ul { margin-left: 18px; margin-bottom: 12px; }
   ul li { margin-bottom: 6px; }
+  .muted { color: var(--muted); }
+
   section { margin-bottom: 18px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  thead th { background: rgba(255,255,255,0.06); }
+
+  figure { border: 1px dashed var(--border); padding: 10px; margin: 10px 0 14px; text-align: center; }
+  figcaption { margin-top: 6px; color: var(--muted); font-size: 14px; }
+  .mesh-figure {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.06);
+  }
+  .mesh-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
 
   a { color: var(--accent); }
 
@@ -122,19 +151,6 @@
   }
   .toc h2 { margin: 0 0 8px; }
   .toc ol { margin-left: 18px; }
-
-  .pill {
-    display: inline-block;
-    padding: 6px 12px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    font-size: 12px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text);
-    opacity: 0.9;
-    margin-bottom: 8px;
-  }
 
   .project-hero {
     position: relative;
@@ -248,7 +264,7 @@
 <body>
   <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-    <main class="project-page" style="--project-cover: url('/assets/scene1/ezgif-frame-002.jpg');">
+  <main class="project-page" data-project-id="seismic-hazard-analysis-chennai" style="--project-cover: url('/assets/scene1/ezgif-frame-002.jpg');">
     <nav class="top-nav" aria-label="Page links">
       <a href="/projects.html">&lt; Back to Projects</a>
     </nav>
@@ -256,25 +272,46 @@
     <header class="project-hero" aria-label="Project overview">
       <div class="project-hero__media"></div>
       <div class="project-hero__overlay" aria-hidden="true"></div>
+    <div class="project-hero__content">
+      <p class="project-hero__kicker">College of Engineering Guindy, Anna University | 2021</p>
+    <h1 class="project-hero__title">GIS-Based Seismic Hazard and Building Vulnerability Assessment for Chennai</h1>
+      <p class="project-hero__subtitle">
+        Scenario-based seismic vulnerability screening using dynamic structural response modeling, regression methods, and GIS analysis.
+      </p>        
+    <div class="project-award">
+      <em>
+      Best Paper Presentation Award ·
+      5th International Conference on Architecture and Civil Engineering ·
+      Singapore · August 2021
+      </em>
+    </div>
+    <p class="project-link">
+      <a
+        href="https://link.springer.com/chapter/10.1007/978-981-16-8667-2_35"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        View published paper
+      </a>
+    </p>
 
-      <div class="project-hero__content">
-        <p class="project-hero__kicker">College of Engineering Guindy · Anna University | 2020-2021</p>
-        <h1 class="project-hero__title">Seismic Hazard Analysis: Chennai</h1>
-        <p class="project-hero__subtitle">Machine-learning-based seismic risk assessment using structural and soil data for Chennai.</p>
 
-        <div class="project-hero__meta">
+    <div class="project-hero__meta">
+    <div class="project-hero__meta-item">
+      <span class="project-hero__meta-label">Context</span>
+      <span class="project-hero__meta-value">
+        Undergraduate research focused on rapid seismic vulnerability assessment for an urban coastal region.
+      </span>
+    </div>
           <div class="project-hero__meta-item">
-            <span class="project-hero__meta-label">Project type</span>
-            <span class="project-hero__meta-value">Research project</span>
-          </div>
-          <div class="project-hero__meta-item">
-            <span class="project-hero__meta-label">Role</span>
-            <span class="project-hero__meta-value">Researcher</span>
-          </div>
+      <span class="project-hero__meta-label">Role</span>
+      <span class="project-hero__meta-value">
+        Structural modeling, base shear analysis, SVR-based prediction, and GIS visualization.
+      </span>
+    </div>
         </div>
       </div>
     </header>
-    <span class="pill">Coming soon</span>
 
     <nav class="toc" aria-label="Contents">
       <h2>Contents</h2>
@@ -285,44 +322,233 @@
         <li><a href="#key-results">Key Results</a></li>
         <li><a href="#analysis-insights">Analysis &amp; Insights</a></li>
         <li><a href="#what-this-demonstrates">What This Demonstrates</a></li>
+        <li><a href="#recognition">Recognition</a></li>
         <li><a href="#artifacts-links">Artifacts &amp; Links</a></li>
       </ol>
     </nav>
 
     <section id="context">
       <h2>Context</h2>
-      <p>Content coming soon.</p>
+      <p>Chennai is a large, dense urban region where comprehensive building-by-building seismic evaluation is not feasible at city scale. At the same time, meaningful differences in structural vulnerability can arise from variations in building geometry, height, and dynamic response under seismic loading.</p>
+      <p>This project was motivated by the need for a scalable assessment framework that can translate simplified structural response calculations into actionable, city-wide insights. Rather than performing detailed nonlinear analysis for every structure, the work focuses on identifying relative patterns of vulnerability using a combination of representative building models, regression-based generalization, and spatial analysis.</p>
     </section>
 
     <section id="approach">
       <h2>Approach</h2>
-      <p>Content coming soon.</p>
+      <p>
+      The study adopted a scenario-based framework to relate seismic demand to structural response using a representative set of building
+      models. Base shear response was evaluated for buildings with varying plan areas, aspect ratios, and heights through dynamic
+      structural analysis, producing a dataset that captures how key geometric attributes influence seismic demand.
+      </p>
+
+      <p>
+      These results were used to train a support vector regression model that predicts base shear as a function of building attributes
+      available at city scale. The trained model was then applied across the study area, and the resulting predictions were integrated
+      within a GIS environment to examine spatial patterns of relative building vulnerability.
+      </p>
     </section>
 
     <section id="implementation-tools">
       <h2>Implementation &amp; Tools</h2>
-      <p>Details will be added soon.</p>
+
+      <div class="impl-block">
+        <h3>Structural modeling dataset</h3>
+        <ul>
+          <li>
+            Defined a representative set of buildings with varying plan area, aspect ratio, and number of storeys.
+          </li>
+          <li>
+            Performed dynamic structural analysis to compute base shear and related response quantities.
+          </li>
+          <li>
+            Extracted response metrics to form a training dataset linking geometry to seismic demand.
+          </li>
+        </ul>
+      </div>
+
+      <div class="impl-block">
+        <h3>Regression and generalization</h3>
+        <ul>
+          <li>
+            Trained a support vector regression model to predict base shear from geometric building attributes.
+          </li>
+          <li>
+            Tuned model parameters to balance accuracy and generalization for city-scale application.
+          </li>
+          <li>
+            Evaluated prediction performance using goodness-of-fit measures reported in the study.
+          </li>
+        </ul>
+      </div>
+
+      <div class="impl-block">
+        <h3>Spatial integration</h3>
+        <ul>
+          <li>
+            Applied the trained regression model across the study area using available building attribute data.
+          </li>
+          <li>
+            Integrated predicted responses into a GIS environment for spatial analysis.
+          </li>
+          <li>
+            Visualized relative patterns of building vulnerability to support screening and prioritization.
+          </li>
+        </ul>
+      </div>
+
+      <div class="impl-block">
+        <h3>Tools</h3>
+        <ul>
+          <li>
+            ETABS; Structural analysis software for dynamic response modeling of representative buildings.
+          </li>
+          <li>
+            Python for regression modeling, data processing, and analysis.
+          </li>
+          <li>
+            ArcGIS; GIS software for spatial joins, mapping, and visualization.
+          </li>
+        </ul>
+      </div>
     </section>
 
-    <section id="key-results">
-      <h2>Key Results</h2>
-      <p>Results will be added with the full write-up.</p>
+
+    <section id="results">
+      <h2>Results</h2>
+
+      <p>
+        The results examine how seismic base shear demand varies with building height and geometry,
+        and how effectively regression-based predictions reproduce modeled structural response at
+        city scale. All results are interpreted as relative indicators suitable for screening.
+      </p>
+
+      <div class="results-block">
+        <h3>Structural response trends</h3>
+        <p>
+          Dynamic analyses of the representative building set show systematic increases in base shear
+          with plan area, aspect ratio, and number of storeys. Taller buildings exhibit higher demand
+          and greater sensitivity to geometric variation.
+        </p>
+      </div>
+
+      <div class="results-block">
+        <h3>Design vs. scenario-based base shear comparison</h3>
+
+        <p>
+          The figures below compare design base shear and scenario-based base shear for representative
+          low-rise and mid-rise buildings. Results are shown for one-storey buildings (left) and
+          five-storey buildings (right).
+        </p>
+
+        <figure class="mesh-figure">
+          <figure>
+            <img
+              src="/assets/seismic_project/518920_1_En_35_Fig1_HTML.webp"
+              alt="Vbdesign versus Vbpga for 1 storey buildings (left) and 5 storey buildings (right)"
+            />
+            <figcaption>
+              Comparison of reference design base shear and scenario-based base shear for one-storey (left) and five-storey (right) buildings, illustrating how seismic demand and prediction fidelity vary with building height.
+            </figcaption>
+          </figure>
+
+          <figure>
+            <img
+              src="/assets/seismic_project/518920_1_En_35_Fig2_HTML.webp"
+              alt="Comparison of design and scenario-based base shear for five-storey buildings"
+            />
+            <figcaption>
+              Comparative maps of predicted and reference design base shear for one-storey (left) and five-storey (right) buildings.
+            </figcaption>
+          </figure>
+        </figure>
+
+        <ul>
+          <li>
+            For one-storey buildings, predicted base shear shows closer agreement with design-level values,
+            indicating that geometric attributes capture a large portion of the response variability.
+          </li>
+          <li>
+            For five-storey buildings, larger deviations are observed, reflecting increased dynamic
+            complexity and reduced predictive fidelity.
+          </li>
+        </ul>
+      </div>
+
+      <div class="results-block">
+        <h3>Spatial patterns</h3>
+        <p>
+          Mapping predicted responses within a GIS framework reveals non-uniform spatial distributions
+          of relative building vulnerability. For the modeled building stock, coastal regions exhibit
+          comparatively lower vulnerability indices than inland areas, supporting the use of the method
+          for prioritization rather than absolute assessment.
+        </p>
+      </div>
     </section>
+
 
     <section id="analysis-insights">
       <h2>Analysis &amp; Insights</h2>
-      <p>Analysis will be included when results are published.</p>
+
+      <p>
+        The results show that simplified geometric descriptors capture a substantial portion of seismic
+        base shear response for low-rise buildings, enabling effective regression-based generalization
+        at city scale. As building height increases, deviations between predicted and modeled response
+        become more pronounced, reflecting the influence of higher-order dynamic effects that are not
+        fully represented in reduced-order predictors.
+      </p>
+
+      <p>
+        These trends highlight a clear tradeoff between scalability and fidelity. The approach is well
+        suited for rapid screening and prioritization, where relative comparisons are sufficient, but
+        it also delineates the limits beyond which more detailed structural modeling is required. This
+        distinction is critical when using city-scale analyses to guide follow-up investigation rather
+        than replace building-specific evaluation.
+      </p>
     </section>
+
 
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
-      <p>Competencies summary coming soon.</p>
+
+      <ul>
+        <li>
+          Ability to abstract complex structural response into reduced-order models suitable for large-scale analysis.
+        </li>
+        <li>
+          Use of regression methods to generalize physics-based simulation results beyond a limited modeled dataset.
+        </li>
+        <li>
+          Judgment in balancing model fidelity and scalability when operating under data and computational constraints.
+        </li>
+        <li>
+          Translation of numerical model outputs into spatially interpretable results for decision support.
+        </li>
+      </ul>
     </section>
+
+    <section id="recognition">
+      <h2>Recognition</h2>
+
+      <p>
+        Best Paper Presentation Award, 5th International Conference on Architecture and Civil Engineering,
+        Singapore, August 2021.
+      </p>
+    </section>
+
 
     <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
-      <p>Artifacts will be linked after publication.</p>
+
+      <ul>
+        <li>
+          <a href="https://link.springer.com/chapter/10.1007/978-981-16-8667-2_35" target="_blank" rel="noopener noreferrer">
+            Published paper: GIS-Based Seismic Hazard and Building Vulnerability Assessment for an Earthquake Scenario in Chennai
+          </a>
+        </li>
+      </ul>
     </section>
+
+
   </main>
 
 <script>
@@ -338,7 +564,26 @@
     localStorage.setItem("theme", next);
   });
 </script>
+<script type="module">
+import { PROJECTS } from "../assets/projects.js?v=cover-debug-2";
+
+const page = document.querySelector(".project-page");
+const resolveCover = (path) => {
+  if (!path) return "";
+  if (window.location.protocol === "file:") {
+    return new URL(path, window.location.href).toString();
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, window.location.origin).toString();
+};
+const project = PROJECTS.find(p => p.id === page?.dataset.projectId);
+
+if (page && project?.coverImage) {
+  const coverUrl = resolveCover(project.coverImage);
+  page.style.setProperty("--project-cover", `url('${coverUrl}')`);
+  console.log("PROJECT DEBUG:", project.id, project.coverImage);
+  console.log("CSS VAR SET (page):", page.style.getPropertyValue("--project-cover"));
+}
+</script>
 </body>
 </html>
-
-

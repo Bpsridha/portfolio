@@ -366,114 +366,115 @@
         <img src="/assets/cornering_car/corner_mesh.png" alt="Cornering CFD domain mesh">
         <figcaption>Cornering domain mesh</figcaption>
       </figure>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Boundary layer detail near wing surfaces</figcaption>
-      </figure>
     </section>
-
     <section id="key-results">
-      <h2>Key Results</h2>
-      <h3>Straight-Line Aerodynamic Performance (20 m/s)</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Configuration</th>
-            <th>Downforce (N)</th>
-            <th>Drag (N)</th>
-            <th>Downforce / Drag</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>No aero</td><td>-47</td><td>117</td><td>-0.40</td></tr>
-          <tr><td>Aero, DRS active</td><td>416</td><td>232</td><td>1.80</td></tr>
-          <tr><td>Aero, DRS inactive</td><td>599</td><td>348</td><td>1.72</td></tr>
-        </tbody>
-      </table>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Pressure contours on aerodynamic surfaces</figcaption>
-      </figure>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Streamlines over rear wing and diffuser</figcaption>
-      </figure>
+  <h2>Key Results</h2>
 
-      <h3>Cornering Aerodynamic Performance</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Velocity (m/s)</th>
-            <th>Downforce (N)</th>
-            <th>Drag (N)</th>
-            <th>Downforce / Drag</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>10</td><td>163</td><td>100</td><td>1.63</td></tr>
-          <tr><td>15</td><td>373</td><td>225</td><td>1.66</td></tr>
-          <tr><td>20</td><td>675</td><td>404</td><td>1.67</td></tr>
-          <tr><td>30</td><td>1556</td><td>915</td><td>1.70</td></tr>
-        </tbody>
-      </table>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Velocity magnitude contours (front view)</figcaption>
-      </figure>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Surface pressure distribution under cornering flow</figcaption>
-      </figure>
-      <figure>
-        <div>FIGURE PLACEHOLDER</div>
-        <figcaption>Pathlines illustrating curved wake structure</figcaption>
-      </figure>
+  <p><strong>Straight-line baseline:</strong> In straight-line flow, the aerodynamic package produces substantial downforce relative to the no-aero configuration. Activating DRS primarily reduces drag, with only a modest effect on overall aerodynamic efficiency.</p>
 
-      <h3>Straight-Line vs Cornering Comparison</h3>
-      <table>
-        <thead>
-          <tr>
-            <th>Velocity (m/s)</th>
-            <th>Straight-Line D/D</th>
-            <th>Cornering D/D</th>
-            <th>Reduction</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>10</td><td>1.70</td><td>1.63</td><td>2.5%</td></tr>
-          <tr><td>15</td><td>1.70</td><td>1.66</td><td>2.6%</td></tr>
-          <tr><td>20</td><td>1.72</td><td>1.67</td><td>2.9%</td></tr>
-          <tr><td>30</td><td>1.74</td><td>1.70</td><td>2.4%</td></tr>
-        </tbody>
-      </table>
-    </section>
+  <h3>Straight-Line Aerodynamic Performance (20 m/s)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Configuration</th>
+        <th>Downforce (N)</th>
+        <th>Drag (N)</th>
+        <th>Downforce / Drag</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>No aero</td><td>-47</td><td>117</td><td>-0.40</td></tr>
+      <tr><td>Aero, DRS active</td><td>416</td><td>232</td><td>1.80</td></tr>
+      <tr><td>Aero, DRS inactive</td><td>599</td><td>348</td><td>1.72</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="mesh-figure">
+    <img src="/assets/cornering_car/pathlines_straight.png" alt="Pathlines for aero configuration under straight-line flow">
+    <figcaption>Pathlines for the aero configuration under straight-line flow.</figcaption>
+  </figure>
+
+  <p><strong>Cornering flow behavior:</strong> Under steady-state cornering conditions, downforce continues to scale predictably with vehicle speed. However, flow asymmetry alters the pressure distribution and wake structure relative to straight-line cases.</p>
+
+  <h3>Cornering Aerodynamic Performance</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Velocity (m/s)</th>
+        <th>Downforce (N)</th>
+        <th>Drag (N)</th>
+        <th>Downforce / Drag</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>10</td><td>163</td><td>100</td><td>1.63</td></tr>
+      <tr><td>15</td><td>373</td><td>225</td><td>1.66</td></tr>
+      <tr><td>20</td><td>675</td><td>404</td><td>1.67</td></tr>
+      <tr><td>30</td><td>1556</td><td>915</td><td>1.70</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="mesh-figure">
+    <img src="/assets/cornering_car/pathlines_curved.png" alt="Asymmetric wake structure under cornering flow">
+    <figcaption>Pathlines illustrating asymmetric wake development under steady-state cornering flow.</figcaption>
+  </figure>
+
+  <p><strong>Key comparison:</strong> Across all tested speeds, cornering flow produces a consistent reduction in aerodynamic efficiency relative to straight-line simulations, despite similar downforce scaling trends.</p>
+
+  <h3>Straight-Line vs Cornering Comparison</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Velocity (m/s)</th>
+        <th>Straight-Line D/D</th>
+        <th>Cornering D/D</th>
+        <th>Reduction</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>10</td><td>1.70</td><td>1.63</td><td>2.5%</td></tr>
+      <tr><td>15</td><td>1.70</td><td>1.66</td><td>2.6%</td></tr>
+      <tr><td>20</td><td>1.72</td><td>1.67</td><td>2.9%</td></tr>
+      <tr><td>30</td><td>1.74</td><td>1.70</td><td>2.4%</td></tr>
+    </tbody>
+  </table>
+
+  <figure class="mesh-figure">
+    <img src="/assets/cornering_car/pressure_curved_front.png" alt="Front-view pressure contours under cornering flow">
+    <figcaption>Front-view pressure contours highlighting aerodynamic asymmetry induced by cornering flow.</figcaption>
+  </figure>
+</section>
+
 
     <section id="analysis-insights">
       <h2>Analysis &amp; Insights</h2>
-      <p>Cornering flow reduces aerodynamic performance relative to straight-line cases, but the magnitude is modest. Downforce scales predictably with velocity, and the aerodynamic package remains effective relative to the no-aero configuration.</p>
-      <p>Drag shows higher sensitivity to flow curvature than downforce, contributing to the downforce-to-drag reduction. The consistent reduction across speeds indicates straight-line simulations remain useful for comparative design when their limits are acknowledged.</p>
-      <p>The cornering-flow CFD workflow is reusable for future aerodynamic iterations.</p>
+      <p>Across all tested speeds, cornering flow produces a consistent reduction in aerodynamic efficiency relative to straight-line simulations, despite similar trends in downforce scaling with velocity. This indicates that flow curvature primarily affects drag rather than fundamentally altering the downforce-generating mechanisms.</p>
+      <p>The observed efficiency reduction is modest in magnitude, suggesting that straight-line CFD simulations remain effective for comparative aerodynamic design, provided their limitations are understood. However, the asymmetric pressure distribution and wake structure under cornering flow highlight effects that are not captured by symmetric straight-line models.</p>
+      <p>From a design perspective, these results support the use of straight-line simulations for early-stage design iteration, while demonstrating the value of cornering-flow CFD as a targeted validation tool for bounding modeling assumptions and assessing aerodynamic robustness under realistic operating conditions.</p>
     </section>
+
+
 
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
       <ul>
-        <li>Setup and execution of large-scale external aerodynamics CFD</li>
-        <li>Turbulence modeling and boundary-layer resolution</li>
-        <li>Interpretation of asymmetric flow fields</li>
-        <li>Use of dimensionless metrics for fair comparison</li>
-        <li>Engineering judgment in assessing model limitations</li>
-        <li>HPC-based simulation workflows</li>
+        <li>Design and execution of controlled CFD studies to isolate specific physical effects</li>
+        <li>Application of turbulence modeling and boundary layer resolution in large-scale external aerodynamics</li>
+        <li>Interpretation of asymmetric flow fields and their impact on aerodynamic performance metrics</li>
+        <li>Use of dimensionless ratios to enable fair comparison across non-uniform flow conditions</li>
+        <li>Engineering judgment in balancing modeling fidelity, computational cost, and decision relevance</li>
+        <li>Execution of high-performance computing workflows for production-scale simulation campaigns</li>
       </ul>
     </section>
+
 
     <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
       <ul>
-        <li>Full technical report (PDF)</li>
-        <li>Related aerodynamic design and CFD projects</li>
+        <li><a href="/assets/cornering_car/cornering_report.pdf">Full technical report (PDF)</a></li>
       </ul>
     </section>
+
   </main>
 
 <script>
@@ -490,7 +491,7 @@
   });
 </script>
 <script type="module">
-import { PROJECTS } from "../assets/projects.js?v=cover-debug";
+import { PROJECTS } from "../assets/projects.js?v=cover-debug-2";
 
 const page = document.querySelector(".project-page");
 const resolveCover = (path) => {

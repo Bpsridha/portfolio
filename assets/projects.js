@@ -19,10 +19,10 @@ export const PROJECTS = [
   },
   {
     id: "seismic-hazard-analysis-chennai",
-    title: "Seismic Hazard Analysis: Chennai",
-    description: "SVR on building and soil data to flag structural risk.",
+    title: "GIS-Based Seismic Hazard and Building Vulnerability Assessment for Chennai",
+    description: "Scenario-based seismic vulnerability screening using dynamic structural response modeling, regression methods, and GIS analysis.",
     url: "projects/seismic-hazard-analysis-chennai.html",
-    coverImage: "assets/scene1/ezgif-frame-002.jpg",
+    coverImage: "assets/seismic_project/518920_1_En_35_Fig1_HTML.webp",
     featured: true
   },
   {
