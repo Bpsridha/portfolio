@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Numerical Model Risk and Structure Preservation in Black Scholes Equation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" href="/styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+
+  :root {
+    --bg: #000000;
+    --text: #ffffff;
+    --muted: #b3b3b3;
+    --accent: #94a3b8;
+    --panel: rgba(255, 255, 255, 0.04);
+    --border: rgba(255, 255, 255, 0.12);
+    --pattern1: rgba(255,255,255,0.08);
+    --pattern2: rgba(255,255,255,0.06);
+  }
+
+  [data-theme="light"] {
+    --bg: #ffffff;
+    --text: #111111;
+    --muted: #555555;
+    --accent: #1a73e8;
+    --panel: #ffffff;
+    --border: rgba(0, 0, 0, 0.1);
+    --pattern1: rgba(0,0,0,0.05);
+    --pattern2: rgba(0,0,0,0.04);
+  }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(circle at 30% 20%, var(--pattern1), transparent 40%),
+                radial-gradient(circle at 80% 0%, var(--pattern2), transparent 45%),
+                var(--bg);
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px 60px;
+  }
+
+  .home-link {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: 12px;
+    color: var(--text);
+    z-index: 50;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.9;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 12px;
+    color: var(--text);
+    z-index: 50;
+    cursor: pointer;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  main {
+    width: min(960px, 100%);
+    line-height: 1.7;
+  }
+
+  h1 {
+    font-size: 28px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-size: 18px;
+    letter-spacing: 0.04em;
+    margin: 20px 0 8px;
+  }
+
+  p { margin-bottom: 10px; }
+  ul { margin-left: 18px; margin-bottom: 12px; }
+  ul li { margin-bottom: 6px; }
+  .muted { color: var(--muted); }
+
+  section { margin-bottom: 18px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 14px; }
+  th, td { border: 1px solid var(--border); padding: 8px; text-align: left; }
+  thead th { background: rgba(255,255,255,0.06); }
+
+  figure { border: 1px dashed var(--border); padding: 10px; margin: 10px 0 14px; text-align: center; }
+  figcaption { margin-top: 6px; color: var(--muted); font-size: 14px; }
+  .mesh-figure {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    background: rgba(0,0,0,0.06);
+  }
+  .mesh-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    object-fit: cover;
+  }
+
+  a { color: var(--accent); }
+
+  .top-nav {
+    margin-bottom: 10px;
+  }
+
+  .top-nav a {
+    color: var(--accent);
+    text-decoration: underline;
+    font-weight: 600;
+  }
+
+  .meta {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin: 10px 0 14px;
+    background: rgba(0,0,0,0.12);
+  }
+  .meta p { margin: 4px 0; color: var(--muted); }
+
+  .toc {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin: 14px 0 18px;
+    background: rgba(0,0,0,0.08);
+  }
+  .toc h2 { margin: 0 0 8px; }
+  .toc ol { margin-left: 18px; }
+
+  .project-hero {
+    position: relative;
+    min-height: 360px;
+    border-radius: 22px;
+    overflow: hidden;
+    isolation: isolate;
+    margin: 28px 0 26px 0;
+    background: rgba(10, 12, 16, 0.6);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.45);
+  }
+
+  .project-hero__media {
+    position: absolute;
+    inset: 0;
+    background-image: var(--project-cover);
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .project-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--hero-overlay);
+    pointer-events: none;
+  }
+
+  .project-hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 980px;
+    padding: 34px 32px 30px 32px;
+    background: var(--hero-bg);
+    border: 1px solid var(--hero-border);
+    color: var(--hero-text-primary);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+  }
+
+  .project-hero__content::before {
+  }
+
+  .project-hero__kicker {
+    font-size: 0.9rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--hero-text-secondary);
+  }
+
+  .project-hero__title {
+    font-size: clamp(1.9rem, 3.2vw, 3rem);
+    line-height: 1.05;
+    margin: 0 0 12px 0;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--hero-text-primary);
+  }
+
+  .project-hero__subtitle {
+    max-width: 62ch;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    color: var(--hero-text-secondary);
+  }
+
+  .project-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 18px;
+  }
+
+  .project-hero__meta-item {
+    padding: 12px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .project-hero__meta-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+    color: var(--hero-text-secondary);
+  }
+
+  .project-hero__meta-value {
+    font-size: 0.95rem;
+    line-height: 1.35;
+    color: var(--hero-text-secondary);
+  }
+
+  @media (max-width: 820px) {
+    .project-hero {
+      min-height: 420px;
+    }
+
+    .project-hero__content {
+      padding: 26px 18px 22px 18px;
+    }
+
+    .project-hero__meta {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <a class="home-link" href="/index.html">Balaji Sridhar</a>
+  <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
+  <main class="project-page" data-project-id="cornering-aerodynamics-fsae" style="--project-cover: url('/assets/cornering_car/cornering_car.png');">
+    <nav class="top-nav" aria-label="Page links">
+      <a href="/projects.html">&lt; Back to Projects</a>
+    </nav>
+
+    <header class="project-hero" aria-label="Project overview">
+      <div class="project-hero__media"></div>
+
+      <div class="project-hero__overlay" aria-hidden="true"></div>
+
+      <div class="project-hero__content">
+        <p class="project-hero__kicker">Independent Research | Ongoing</p>
+
+        <h1 class="project-hero__title">
+          Numerical Model Risk and Structure Preservation in Black Scholes Equation
+        </h1>
+
+        <p class="project-hero__subtitle">
+           Diagnosing discretization-induced violations of no-arbitrage structure in finite difference schemes for Black Scholes equation
+        </p>
+        <div class="project-hero__meta">
+          <div class="project-hero__meta-item">
+            <span class="project-hero__meta-label">Context</span>
+            <span class="project-hero__meta-value">
+              Research study on numerical methods for PDE-based option pricing
+            </span>
+          </div>
+
+          <div class="project-hero__meta-item">
+            <span class="project-hero__meta-label">Role</span>
+            <span class="project-hero__meta-value">
+              Structural preservation, discretization effects, and diagnostic frameworks
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="toc" aria-label="Contents">
+        <h2>Contents</h2>
+        <ol>
+            <li><a href="#context">Context</a></li>
+            <li><a href="#approach">Approach</a></li>
+            <li><a href="#implementation-tools">Implementation &amp; Tools</a></li>
+            <li><a href="#observations">Preliminary Observations</a></li>
+            <li><a href="#analysis-notes">Analysis Notes</a></li>
+            <li><a href="#what-this-demonstrates">What This Demonstrates</a></li>
+            <li><a href="#artifacts-links">Artifacts &amp; Links</a></li>
+        </ol>
+        </nav>
+
+
+    <section id="context">
+    <h2>Context</h2>
+      <p>Numerical methods play a central role in option pricing and risk analysis. While the underlying mathematical models are well understood in theory, practical use depends on discretized implementations whose behavior is often assessed using generic numerical criteria.</p>
+      <p>  This project is concerned with the relationship between numerical implementation choices and the qualitative behavior of pricing solutions. Rather than focusing on model specification or market calibration, the emphasis is on how numerical procedures themselves can influence interpretability and trust.</p>
+      <p>The work is exploratory and diagnostic in nature. It treats numerical solvers as objects of scrutiny, with the goal of better understanding their limitations and failure modes in applied financial settings</p>
+    </section>
+
+    <section id="approach">
+      <h2>Approach</h2>
+        <p>The project is structured as a sequence of controlled numerical experiments rather than a single end-to-end solution. Emphasis is placed on formulation choices, diagnostic checks, and comparative behavior across regimes, not on optimizing any one method.</p>
+        <p>Standard modeling setups are used as reference points, allowing attention to remain on numerical behavior rather than model novelty. Variants are introduced incrementally to isolate the effect of individual implementation decisions.</p>
+        <p>Throughout, the approach favors transparency and restraint. Methods are chosen to be interpretable and reproducible, with conclusions drawn conservatively and only where behavior is consistent across settings.</p>
+    </section>
+
+    <section id="implementation-tools">
+      <h2>Implementation &amp; Tools</h2>
+      <p>The work is implemented using a small, modular computational setup designed to support controlled experimentation rather than large-scale deployment. Components are structured to allow rapid iteration on discretization choices and diagnostics while keeping the overall system easy to reason about.</p>
+      <p>Emphasis is placed on clarity and reproducibility. Numerical experiments are scripted to ensure consistent parameter control and to make comparative behavior across runs easy to inspect.</p>
+      <p>Tooling choices favor stability and transparency over performance tuning. The current implementation uses Python with standard scientific computing and visualization libraries such as numpy, pandas, and matplotlib.</p>
+    </section>
+    <section id="observations">
+  <h2>Preliminary Observations</h2>
+    <p>Early experiments suggest that numerical behavior can be sensitive to implementation choices in ways that are not always apparent from aggregate diagnostics or visual inspection alone. Certain effects emerge only under refinement, stress, or comparison across closely related configurations.</p>
+
+    <p>These observations have informed how subsequent experiments are structured, particularly with respect to isolating individual numerical decisions and examining their downstream impact. At this stage, the emphasis is on identifying patterns worth further investigation rather than drawing general conclusions.</p>
+
+    <p>This work is part of an ongoing manuscript and remains under active development.</p>
+  
+</section>
+
+
+    <section id="analysis-notes">
+      <h2>Analysis Notes</h2>
+      <p>The analysis emphasizes careful comparison across closely related numerical configurations, with attention to where qualitative behavior changes and where it remains stable. Rather than relying on single runs or representative plots, behavior is examined across parameter ranges to identify consistent tendencies.</p>
+      <p>Interpretation is deliberately conservative. Observed behavior is treated as a prompt for further testing rather than evidence of general principles. Where ambiguity exists, it is recorded rather than resolved prematurely.</p>
+      <p>These notes serve as an internal checkpoint in the workflow, helping to distinguish robust behavior from artifacts of specific configurations or assumptions.</p>
+    </section>
+
+
+
+    <section id="what-this-demonstrates">
+      <h2>What This Demonstrates</h2>
+      <ul>
+        <li>Design and execution of controlled CFD studies to isolate specific physical effects</li>
+        <li>Application of turbulence modeling and boundary layer resolution in large-scale external aerodynamics</li>
+        <li>Interpretation of asymmetric flow fields and their impact on aerodynamic performance metrics</li>
+        <li>Use of dimensionless ratios to enable fair comparison across non-uniform flow conditions</li>
+        <li>Engineering judgment in balancing modeling fidelity, computational cost, and decision relevance</li>
+        <li>Execution of high-performance computing workflows for production-scale simulation campaigns</li>
+      </ul>
+    </section>
+
+
+    <section id="artifacts-links">
+      <h2>Artifacts &amp; Links</h2>
+      <ul>
+        <li><a href="/assets/cornering_car/cornering_report.pdf">Full technical report (PDF)</a></li>
+      </ul>
+    </section>
+
+  </main>
+
+<script>
+  const rootEl = document.documentElement;
+  const toggle = document.querySelector(".theme-toggle");
+  const stored = localStorage.getItem("theme");
+  const initial = stored === "light" || stored === "dark" ? stored : "dark";
+  rootEl.setAttribute("data-theme", initial);
+
+  toggle.addEventListener("click", () => {
+    const next = rootEl.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    rootEl.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+  });
+</script>
+<script type="module">
+import { PROJECTS } from "../assets/projects.js?v=cover-debug-2";
+
+const page = document.querySelector(".project-page");
+const resolveCover = (path) => {
+  if (!path) return "";
+  if (window.location.protocol === "file:") {
+    return new URL(path, window.location.href).toString();
+  }
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return new URL(normalized, window.location.origin).toString();
+};
+const project = PROJECTS.find(p => p.id === page?.dataset.projectId);
+
+if (page && project?.coverImage) {
+  const coverUrl = resolveCover(project.coverImage);
+  page.style.setProperty("--project-cover", `url('${coverUrl}')`);
+  console.log("PROJECT DEBUG:", project.id, project.coverImage);
+  console.log("CSS VAR SET (page):", page.style.getPropertyValue("--project-cover"));
+}
+</script>
+</body>
+</html>
+
+

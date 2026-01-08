@@ -32,5 +32,13 @@ export const PROJECTS = [
     url: "projects/smart-chess-board.html",
     coverImage: "/assets/chess-board/chess_board.jpeg",
     featured: false
+  },
+  {
+    id: "struct-bs-eqn",
+    title: "Numerical Model Risk and Structure Preservation in Black Scholes Equation",
+    description: "Diagnosing discretization-induced violations of no-arbitrage structure in finite difference schemes for Black Scholes equation.",
+    url: "projects/struct-bs-eqn.html",
+    coverImage: "",
+    featured: false
   }
 ];
