@@ -35,10 +35,10 @@ export const PROJECTS = [
   },
   {
     id: "struct-bs-eqn",
-    title: "Numerical Model Risk and Structure Preservation in Black Scholes Equation",
+    title: "Numerical Stability and No-Arbitrage Violations in Discretized Black Scholes Models",
     description: "Diagnosing discretization-induced violations of no-arbitrage structure in finite difference schemes for Black Scholes equation.",
     url: "projects/struct-bs-eqn.html",
-    coverImage: "",
+    coverImage: "assets/bs-project-cover.png",
     featured: false
   }
 ];

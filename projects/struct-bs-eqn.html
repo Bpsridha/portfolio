@@ -267,7 +267,7 @@
 <body>
   <a class="home-link" href="/index.html">Balaji Sridhar</a>
   <div class="theme-toggle" role="button" aria-label="Toggle theme">Light / Dark</div>
-  <main class="project-page" data-project-id="cornering-aerodynamics-fsae" style="--project-cover: url('/assets/cornering_car/cornering_car.png');">
+  <main class="project-page" data-project-id="struct-bs-eqn" style="--project-cover: url('/assets/bs-project-cover.png');">
     <nav class="top-nav" aria-label="Page links">
       <a href="/projects.html">&lt; Back to Projects</a>
     </nav>
@@ -281,7 +281,7 @@
         <p class="project-hero__kicker">Independent Research | Ongoing</p>
 
         <h1 class="project-hero__title">
-          Numerical Model Risk and Structure Preservation in Black Scholes Equation
+          Numerical Stability and No-Arbitrage Violations in Discretized Black Scholes Models
         </h1>
 
         <p class="project-hero__subtitle">
@@ -352,9 +352,12 @@
 
     <section id="analysis-notes">
       <h2>Analysis Notes</h2>
-      <p>The analysis emphasizes careful comparison across closely related numerical configurations, with attention to where qualitative behavior changes and where it remains stable. Rather than relying on single runs or representative plots, behavior is examined across parameter ranges to identify consistent tendencies.</p>
-      <p>Interpretation is deliberately conservative. Observed behavior is treated as a prompt for further testing rather than evidence of general principles. Where ambiguity exists, it is recorded rather than resolved prematurely.</p>
-      <p>These notes serve as an internal checkpoint in the workflow, helping to distinguish robust behavior from artifacts of specific configurations or assumptions.</p>
+      <p>
+        Analysis focuses on controlled comparison across closely related numerical configurations to identify changes in qualitative behavior. Results are examined across parameter ranges rather than isolated runs.
+      </p>
+      <p>
+        Interpretation is conservative. Observations are documented as inputs to further testing, with care taken to distinguish robust behavior from discretization- or boundary-driven artifacts.
+      </p>
     </section>
 
 
@@ -362,12 +365,12 @@
     <section id="what-this-demonstrates">
       <h2>What This Demonstrates</h2>
       <ul>
-        <li>Design and execution of controlled CFD studies to isolate specific physical effects</li>
-        <li>Application of turbulence modeling and boundary layer resolution in large-scale external aerodynamics</li>
-        <li>Interpretation of asymmetric flow fields and their impact on aerodynamic performance metrics</li>
-        <li>Use of dimensionless ratios to enable fair comparison across non-uniform flow conditions</li>
-        <li>Engineering judgment in balancing modeling fidelity, computational cost, and decision relevance</li>
-        <li>Execution of high-performance computing workflows for production-scale simulation campaigns</li>
+        <li>Ability to treat financial PDEs as numerical systems rather than closed-form formulas</li>
+        <li>Careful reasoning about stability, monotonicity, and constraint preservation in discretized models</li>
+        <li>Experience designing diagnostics that expose numerical failure modes beyond visual inspection</li>
+        <li>Judgment in separating model assumptions from implementation-induced artifacts</li>
+        <li>Comfort working at the boundary between applied mathematics, numerical analysis, and finance</li>
+        <li>Clear documentation of exploratory technical work under uncertainty</li>
       </ul>
     </section>
 
@@ -375,9 +378,10 @@
     <section id="artifacts-links">
       <h2>Artifacts &amp; Links</h2>
       <ul>
-        <li><a href="/assets/cornering_car/cornering_report.pdf">Full technical report (PDF)</a></li>
+        <li>Code and numerical experiment artifacts will be released following completion of the study.</li>
       </ul>
     </section>
+
 
   </main>
 
@@ -417,5 +421,4 @@ if (page && project?.coverImage) {
 </script>
 </body>
 </html>
-
 
